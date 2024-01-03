@@ -1,0 +1,42 @@
+<div>
+    <div class="bg  text-center">
+        <mat-card>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                        <form #loginForm="ngForm" class="form" [formGroup]="forgotpageForm">
+                            <img class="logo" [src]="global.logo">
+                            <h2 style="font-weight: 600;"> Forgot Password?</h2>
+                            <h3> No worries, Enter your Emp id and we'll send you an email with instructions to reset
+                                your password.</h3>
+                            <mat-form-field class="w-100 p-2 mt-4">
+                                <mat-label>Employee ID</mat-label>
+                                <mat-icon matPrefix color="primary">person_2</mat-icon>
+                                <input matInput placeholder="EmpID" name="Empid" required formControlName="Empid">
+                                <mat-error>
+                                    <mat-error *ngIf="forgotpageForm.get('Empid')?.hasError('pattern')">Only
+                                        numeric values are allowed</mat-error>
+                                </mat-error>
+                            </mat-form-field>
+                        </form>
+                        <div class="text-center">
+                            <button mat-button class="btn" color="primary" [disabled]="!loginForm.form.valid"
+                                (click)="login()">Submit</button>
+
+                            <button mat-button class="btn btn-primary w-100" (click)="openPage('/prelogin')">
+                                <mat-icon>arrow_back_ios_new</mat-icon> Back to Login page</button>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <img [src]="global.resetimg" class="sidebar-img">
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+
+
+</div>

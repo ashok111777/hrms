@@ -1,0 +1,73 @@
+<div class="card">
+  <div class="cgs-container">
+    <div class="c-card border">
+      <mat-toolbar class="bg-white text-primary border-bottom">
+        <mat-icon><span class="material-icons-two-tone">
+            cake
+          </span></mat-icon>
+        <span class="c-font ps-2">Fun Friday Template Wishes</span>
+      </mat-toolbar>
+      <div class="row g-3">
+        <form [formGroup]="form">
+          <div class="row mt-2" style="padding-left: 15px;">
+            <div class="input-group">
+              <div class="col-1  input-group-text">From:</div>
+
+              <div class="col-11" style="padding-left: 3px;padding-right: 3px;">
+                <tag-input class="w-100" [theme]="'bootstrap3-info'" [(ngModel)]="fromemails"
+                  [ngModelOptions]="{standalone: true}" [addOnBlur]="true" [editable]="true"
+                  [pasteSplitPattern]="'[\s,]+'" [validators]="validators.from" [placeholder]="''" [secondaryPlaceholder]="'Enter a mail address '"
+                  (onAdd)="onChipAdd1($event,'from')"></tag-input>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2" style="padding-left: 15px;">
+            <div class="input-group">
+              <div class="col-1  input-group-text">TO:</div>
+
+              <div class="col-11" style="padding-left: 3px;padding-right: 3px; ">
+                <tag-input class="w-100" [theme]="'bootstrap3-info'" [(ngModel)]="toEmail"
+                  [ngModelOptions]="{standalone: true}" [addOnBlur]="true" [pasteSplitPattern]="'[\s,]+'"
+                  [validators]="validators.to" [placeholder]="''" [secondaryPlaceholder]="'Enter a mail address '"
+                  (onAdd)="onChipAdd1($event,'toEmail')"></tag-input>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2" style="padding-left: 15px;">
+            <div class="input-group">
+              <div class="col-1  input-group-text">Cc/Bcc:</div>
+
+              <div class="col-11" style="padding-left: 3px;padding-right: 3px;">
+                <tag-input class="w-100" [theme]="'bootstrap3-info'" [(ngModel)]="bccemails"
+                  [ngModelOptions]="{standalone: true}" [addOnBlur]="true" [pasteSplitPattern]="'[\s,]+'"
+                  [validators]="validators.cc" [placeholder]="''" [secondaryPlaceholder]="'Enter a mail address '"
+                  (onAdd)="onChipAdd1($event,'cc')"></tag-input>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-2" style="padding-left: 15px;">
+            <div class="input-group">
+              <div class="col-1  input-group-text">Subject:</div>
+
+              <div class="col-11" style="padding-left: 3px;padding-right: 3px;">
+                <input type="text" class="form-control" [theme]="'bootstrap3-info'" placeholder="Enter a subject" formControlName="subject">
+              </div>
+            </div>
+          </div>
+          <angular-editor id="editor2" class="col-auto mt-2" formControlName="data" [config]="config1"
+            (ngModelChange)="onChange2($event)"></angular-editor>
+
+          <div class="col-auto mt-2 mb-2">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button mat-flat-button color="accent" type="button" routerLink="/main/birthday-wishes">Go back</button>
+              <button mat-flat-button color="primary" type="button" (click)="onSubmit()">Submit</button>
+            </div>
+          </div>
+        </form>
+        <!-- <p>Form Value: {{ form.value.signature }}</p>
+                  <p>Form Status: {{ form.status }}</p> -->
+      </div>
+    </div>
+  </div>
+</div>

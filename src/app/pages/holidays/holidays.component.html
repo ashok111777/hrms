@@ -1,0 +1,55 @@
+<div class="cgs-container" id="content">
+    <div class="c-card border">
+        <mat-toolbar class="bg-white text-primary border-bottom">
+            <mat-icon>holiday_village</mat-icon>
+            <span class="c-font ps-2">Holidays</span>
+        </mat-toolbar>
+        <div class="bg-white p-2">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>Filter</mat-label>
+                        <input matInput (keyup)="filterUser($event)" placeholder="Ex. Surya" #input>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 text-end"></div>
+                <div class="col-lg-4 col-md-6 col-sm-12 text-end">
+                    <button mat-raised-button color="primary" class="btn" (click)="addFestive()">
+                        <mat-icon>add</mat-icon>New Festival</button>
+                </div>
+            </div>
+            <div class="mat-elevation-z1 responsive-table">
+                <table matTableResponsive matSort mat-table [dataSource]="dataSource">
+                    <ng-container matColumnDef="no">
+                        <th mat-header-cell *matHeaderCellDef> S.No </th>
+                        <td mat-cell *matCellDef="let row; let i = index"> {{ i + 1}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="festivalName">
+                        <th mat-header-cell *matHeaderCellDef>Festival Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.festivalName}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef>Date</th>
+                        <td mat-cell *matCellDef="let row"> {{row.date}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef>Description</th>
+                        <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef>Action</th>
+                        <td mat-cell *matCellDef="let row">
+                            <button mat-icon-button aria-label="Delete" color="accent" (click)="askForDeletion(row.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="holidayRow sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: holidayRow"></tr>
+                </table>
+                <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
+                    aria-label="Show Next Employee"></mat-paginator> -->
+            </div>
+        </div>
+    </div>
+</div>

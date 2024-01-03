@@ -1,0 +1,114 @@
+<div class="center-component m-0 p-0">
+    <div class="border-bottom">
+
+        <h2 class="text-primary">
+            <mat-icon >groups</mat-icon>
+            <span>
+                Work form Home details
+            </span>
+            <!-- <span *ngIf="data.mode==='A'">Add New User</span> -->
+        </h2>
+        <button mat-icon-button color="accent" class="close-btn" matDialogClose>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="p-3">
+        <form [formGroup]="wfmfrom" #desigForm="ngForm">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12" *ngIf="data.mode!=='A'">
+                    <mat-form-field class="full-width">
+                        <mat-label>Emp id</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="id" readonly="true"
+                            formControlName="empId" name="empId">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>Name</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="fullName"
+                            [readonly]="data.mode==='V'" formControlName="empName" name="empName">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>Team</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="Team name"
+                            [readonly]="data.mode==='V'" formControlName="empTeam" name="empTeam">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>ApplyDate</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="applyDate"
+                            [readonly]="data.mode==='V'" formControlName="applyDate" name="applyDate">
+
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>fromDate</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="fromDate"
+                            [readonly]="data.mode==='V'" formControlName="fromDate" name="fromDate">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>toDate</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="toDate" [readonly]="data.mode==='V'"
+                            formControlName="toDate" name="toDate">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>reason</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="reason" [readonly]="data.mode==='V'"
+                            formControlName="reason" name="reason">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>requestType</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="requestType"
+                            [readonly]="data.mode==='V'" formControlName="requestType" name="requestType">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>authByName</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="authByName"
+                            [readonly]="data.mode==='V'" formControlName="authByName" name="authByName">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>authDate</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="authDate"
+                            [readonly]="data.mode==='V'" formControlName="authDate" name="authDate">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>status</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="status" [readonly]="data.mode==='V'"
+                            formControlName="status" name="status">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>comments</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="comments"
+                            [readonly]="data.mode==='V'" formControlName="comments" name="comments">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg col-md col-sm">
+                    <mat-form-field class="full-width">
+                        <mat-label>description</mat-label>
+                        <textarea type="text" matInput autocomplete="off" placeholder="description"
+                            [readonly]="data.mode==='V'" formControlName="description" name="description">
+                            </textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

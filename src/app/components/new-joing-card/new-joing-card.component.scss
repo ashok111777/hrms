@@ -1,0 +1,16 @@
+.right {
+    position: absolute;
+    float: right;
+    right: 0px;
+}
+
+#container  {
+    position: relative;
+
+}
+
+.title_center {
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+  }

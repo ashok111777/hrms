@@ -1,0 +1,36 @@
+<div class="c-card border" id="container">
+    <div>
+        <mat-toolbar class="bg-white text-primary border-bottom">
+            <mat-icon><span class="material-symbols-outlined">
+                    person_add 
+                </span></mat-icon>
+            <span class="c-font ps-2">New joining Wishes </span>
+            <p></p>
+            <div class="right"><button mat-icon-button mat-dialog-close color="accent" class="close-btn"
+                    (click)="close('N')">
+                    <mat-icon>close</mat-icon>
+                </button></div>
+        </mat-toolbar>
+        <br>
+        <div class="bg-white p-3">
+            <div class="p-3">
+                <mat-card class="title_center">
+                    <mat-card-header class="text-center">
+                        <mat-card-title>{{ data.fullName }}</mat-card-title>
+                        <mat-card-subtitle>{{ data.title }}</mat-card-subtitle>  
+                    </mat-card-header>
+                    <div class="text-center">
+                        <img mat-card-image [src]="data.image" alt="Birthday Image"
+                            class="rounded mx-auto d-block" style="height: 200px; width: 400px;">
+                    </div>
+                    <mat-card-content class="text-center">
+                        <h3>{{ data.designationName }}</h3>
+                        <p class="text-capitalize">{{ data.body }}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+
+    </div>
+</div>

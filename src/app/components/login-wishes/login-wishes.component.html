@@ -1,0 +1,66 @@
+<mat-card class="text-focus-in">
+    <div *ngIf="data.timeZone === 'M'">
+        <div class="card-info">
+            <div class="anime">
+                <lottie-player src="assets/JSON/sun-animation.json" autoplay loop mode="normal"
+                    style="width: 500px;"></lottie-player>
+                <div class="images">
+                    <div class="card-img">
+                        <img src="assets/imgs/wishes/morning.png">
+                    </div>
+                    <div class="card-img">
+                        <img src="assets/imgs/wishes/have-a-good-day.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="data.timeZone === 'A'">
+        <div class="card-info">
+            <div class="anime">
+                <lottie-player src="assets/JSON/sun-animation.json" autoplay loop mode="normal"
+                    style="width: 500px;"></lottie-player>
+                <div class="images">
+                    <div class="card-img">
+                        <img src="assets/imgs/wishes/afternoon.png">
+                    </div>
+                    <div class="card-img">
+                        <img src="assets/imgs/wishes/productive.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="data.timeZone === 'E'">
+        <div class="card-info">
+            <div class="anime">
+                <lottie-player src="assets/JSON/Evening.json" autoplay loop mode="normal"
+                    style="width: 300px;"></lottie-player>
+                <div class="images">
+                    <div class="card-img">
+                        <img src="assets/imgs/wishes/evening.png">
+                    </div>
+                    <div class="card-img">
+                        <img src="assets/imgs/wishes/good-vibes-only.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="data.timeZone === 'N'">
+        <div class="card-info">
+            <div class="anime">
+                <lottie-player src="assets/JSON/night.json" autoplay loop mode="normal"
+                    style="width: 200px;"></lottie-player>
+                <div class="images">
+                    <div class="card-img">
+                        <img src="assets/imgs/wishes/night.png">
+                    </div>
+                    <div class="card-img">
+                        <img src="assets/imgs/wishes/relax.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

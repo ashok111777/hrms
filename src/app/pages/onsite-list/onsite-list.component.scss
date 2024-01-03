@@ -1,0 +1,51 @@
+.custom-card {
+    background-color: #9EDDFF;
+}
+
+.outer-div {
+    margin: 16px 16px 16px 16px;
+    // background-color: #E0F4FF;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.header-text {
+    h4 {
+        font-weight: bolder;
+    }
+
+    p {
+        // font-size: small;
+        color: #3F51B5;
+        font-weight: bold;
+    }
+}
+
+.info-card {
+    /* width: 500px !important;
+    height: 250px !important; */
+    border-radius: 20px;
+    background: linear-gradient(#96d0dc, #5e9daa);
+    box-shadow: 0 8px 6px -6px black;
+}
+
+.custom-tab {
+    ::ng-deep .mat-mdc-tab-labels {
+        display: none !important;
+    }
+}
+
+
+.custom-input {
+    ::ng-deep {
+        .mat-mdc-text-field-wrapper {
+            // background-color: #F1EFEF;
+            // background-color: #E3F4F4;
+            background-color: #EEF5FF;
+
+
+        }
+    }
+}

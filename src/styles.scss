@@ -1,0 +1,297 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    margin: 0px !important;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.btn {
+    min-width: 200px !important;
+    padding: 0px !important;
+    font-family: 'ibmplex' !important;
+    padding: 16px !important;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.w-50 {
+    width: 50% !important;
+}
+
+@font-face {
+    font-family: 'ibmplex';
+    font-style: normal;
+    font-weight: normal;
+    // src: url('./assets/fonts/Roboto/Roboto-Medium.ttf');
+    src: url('./assets/fonts/ibmplex.ttf');
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+button,
+input,
+label,
+a,
+matListItemLine,
+mat-line,
+c-font,
+mat-container {
+    font-family: 'ibmplex' !important;
+}
+
+matListItemLine {
+    cursor: pointer !important;
+}
+
+.post-dialog-container .mat-dialog-container {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    // box-shadow: rgba(0, 0, 0, 0.02) 0px 5px 15px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    // box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    padding: 0px !important;
+}
+
+mat-mdc-nav-list mat-mdc-list-base mdc-list {
+    padding: 0px !important;
+    margin: 0px;
+}
+
+.full-width {
+    width: 100% !important;
+}
+
+
+
+.md-btn {
+    padding: 25px 20px 25px 20px !important;
+    min-width: 200px !important;
+    margin: 10px !important;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px !important;
+
+    mat-icon {
+        margin-right: 10px !important;
+    }
+}
+
+.md-btn:hover {
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px !important;
+}
+
+mat-chip {
+    // padding:5px !important;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #fff;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #3F51B5;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #08188e;
+}
+
+.cgs-container {
+    // border-radius: 16px !important;
+    padding: 10px !important;
+    background-color: whitesmoke;
+}
+
+.light-bg {
+    background: #08188e10;
+    color: #08188e;
+}
+
+.c-card {
+    margin: 0px !important;
+    padding: 0px !important;
+    // border-radius: 16px;
+    // border:1px solid #08188e40;
+    min-height: calc(100vh - 85px) !important;
+    background-color: #fff;
+
+    .c-body {
+        padding: 16px;
+    }
+}
+
+.c-font {
+    font-weight: normal !important;
+}
+
+.b-scrum {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    // border-radius:10px;
+}
+
+.custom-modal {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    padding: 0px !important;
+
+    .mat-dialog-container {
+        padding: 0px !important;
+    }
+}
+
+.center-component {
+    position: relative;
+    width: 100%;
+    margin: 0px !important;
+    padding: 0px !important;
+
+    h2 {
+        margin: 10px !important;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: -7px;
+        right: 5px;
+    }
+
+    .form {
+        // padding-left: 16px;
+        // padding-right: 16px;
+    }
+}
+
+.icon {
+    height: 60px;
+}
+
+.btn:hover {
+    background-color: #fff;
+    border: 1px solid #08188e !important;
+    color: #08188e !important;
+}
+
+.dept-form {
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+
+    img {
+        width: 100%;
+        margin: 16px;
+    }
+}
+
+.loader-progress {
+    .mat-progress-bar-fill::after {
+        background-color: #ddd !important;
+    }
+
+    .mat-progress-bar-buffer {
+        background: #08188e !important;
+    }
+}
+
+tr:hover {
+    background: whitesmoke;
+}
+
+// bottom sheet css
+.bottom-sheet-container {
+    width: 700px;
+    padding: 0px !important;
+    margin: 0px !important;
+
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+        width: 100% !important;
+    }
+
+    @media screen and (min-width: 960px) and (max-width: 1279px) {
+        width: 800px;
+    }
+
+    @media screen and (min-width: 1280px) and (max-width: 1919px) {
+        width: 900px;
+    }
+}
+
+mat-bottom-sheet-container {
+    padding: 0px !important;
+}
+
+.cursor {
+    cursor: pointer !important;
+}
+
+mat-list-item {
+    padding-left: 0px !important;
+    // height: 40px !important;
+
+    mat-icon {
+        margin-right: 6px !important;
+    }
+
+    .title {
+        padding: 0px !important;
+        margin: 0px !important;
+        margin-top: -5px !important;
+    }
+}
+
+/* ::ng-deep.mat-form-field-infix {
+    border: 0;
+    height: 45px;
+}
+
+::ng-deep.mat-form-field-appearance-outline .mat-form-field-label {
+    top: 2.35em
+}
+
+mat-label {
+    font-size: 13px;
+} */
+
+
+@import './app/mat-table-responsive/mat-table-responsive.directive';
+
+.responsive-table {
+    width: 100%;
+    overflow: auto;
+}
+
+.bg1{
+    background-image: url(.../../assets/imgs/bg1.jpg);
+    // background-image: url('/assets/imgs/background-image.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh; /* Ensure the container covers the entire viewport height */
+}
+
+td.mat-cell {
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+    border-bottom-style: dotted;
+    border-bottom-width: 1px;
+    height: 30px !important;
+}
+

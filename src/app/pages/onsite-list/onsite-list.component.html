@@ -1,0 +1,107 @@
+<div>
+    <p>
+        <mat-toolbar class="d-flex flex-row justify-content-between" style="background-color: #AEDEFC;">
+            <span></span>
+            <span>{{data.name}}</span>
+            <span>
+                <button mat-icon-button (click)="closeDialog()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </span>
+        </mat-toolbar>
+    </p>
+    <div class="outer-div">
+        <mat-tab-group (selectedIndexChange)="changePage($event)" [selectedIndex]="pageIndex">
+            <mat-tab *ngFor="let tab of totalItems; index as i" label="{{tab.productName}}-{{tab.fromDate}}">
+                <form [formGroup]="onsiteEmpForm" class="p-2">
+                    <div class="container">
+                        <div class="row">
+                            <h2>Onsite Details</h2>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <mat-form-field class="custom-input">
+                                    <mat-label>Product Name</mat-label>
+                                    <input matInput formControlName="productName" readonly>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <mat-form-field class="custom-input">
+                                    <mat-label>From Date</mat-label>
+                                    <input matInput formControlName="fromDate" readonly>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <mat-form-field class="custom-input">
+                                    <mat-label>To Date</mat-label>
+                                    <input matInput formControlName="toDate" readonly>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <mat-form-field class="custom-input">
+                                    <mat-label>Country</mat-label>
+                                    <input matInput formControlName="countryName" readonly>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <mat-form-field class="custom-input">
+                                    <mat-label>Location-Onsite</mat-label>
+                                    <input matInput formControlName="onsiteLocation" readonly>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <mat-form-field class="custom-input">
+                                <mat-label>Purpose</mat-label>
+                                <textarea matInput formControlName="purposeOfVisit" [readonly]="!data.mode"
+                                    cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                                    cdkAutosizeMaxRows="5"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div *ngIf="data.mode === false">
+                                    <mat-form-field class="custom-input">
+                                        <mat-label>Early/Extend Date</mat-label>
+                                        <input matInput formControlName="earlyOrExtendDate" readonly
+                                            [matDatepicker]="datePicker">
+                                        <mat-hint>DD-MM-YYYY</mat-hint>
+                                        <mat-datepicker #datePicker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div *ngIf="data.mode === true">
+                                    <mat-form-field class="custom-input">
+                                        <input matInput [matDatepicker]="datePicker" formControlName="earlyOrExtendDate"
+                                            (dateChange)="formatDate($event)">
+                                        <mat-hint>DD-MM-YYYY</mat-hint>
+                                        <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle>
+                                        <mat-datepicker #datePicker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <mat-form-field class="custom-input">
+                                <mat-label>Description</mat-label>
+                                <!-- <input matInput formControlName="description" [readonly]="!data.mode"> -->
+                                <textarea matInput formControlName="description" [readonly]="!data.mode"
+                                    cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                                    cdkAutosizeMaxRows="5"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="full-width text-center" *ngIf="data.mode === true">
+                            <button mat-raised-button color="primary" class="md-btn" [disabled]="onsiteEmpForm.invalid"
+                                (click)="showCnfAlert('U')">Update</button>
+                            <button mat-raised-button color="accent" class="md-btn"
+                                (click)="showCnfAlert('D')">Delete</button>
+                        </div>
+                        <div class="full-width text-center" *ngIf="data.mode === false">
+                            <button mat-raised-button color="accent" class="md-btn"
+                                (click)="showCnfAlert('D')">Delete</button>
+                        </div>
+                    </div>
+                </form>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

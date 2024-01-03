@@ -1,0 +1,85 @@
+<div class="w-100 cgs-container p-3 pt-2">
+  <div class="row px-3">
+    <div class="col-md-4 py-2" style="background-color: #ffffff ;">
+      <mat-form-field class="full-width">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" [(ngModel)]="searchQuery">
+      </mat-form-field>
+      <div class="contact-list-container">
+        <!-- Contact list goes here -->
+        <div class="user-access">
+          <ng-container *ngFor="let item of filterList()">
+            <div class="user-item" (click)="editprofile(item)" [class.selected-item]="item.id === selectedItemId"
+              (click)="onItemClick(item.id)">
+              <div class="avatar-container">
+                <img src="assets/imgs/user-empty.png" class="avatar" alt="User Avatar">
+              </div>
+              <div class="user-details">
+                <div class="user-name">{{ item.profileName }}</div>
+              </div>
+              <div class="delete-button" *ngIf="!item.admin">
+                <button mat-icon-button aria-label="Delete" color="accent"
+                  [disabled]="item.fullName === 'No users found'" (click)="askForDeletion(item)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8 py-2" style="background-color: #ffffff ;">
+      <div [formGroup]="roleForm" class="row align-items-start">
+        <div class="col-md-6 col-lg col-sm">
+          <!-- Admin role form field -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" onkeydown="return /[a-z]/i.test(event.key)" required
+              formControlName="profileName">
+          </mat-form-field>
+        </div>
+        <div class="col-md col-lg col-sm">
+          <!-- Role Description form field -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Description" onkeydown="return /[a-z]/i.test(event.key)" required
+              formControlName="description">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="text-end me-3">
+        <button mat-stroked-button color="accent" class="btn btn-primary me-md-3" (click)="reset()">Reset</button>
+        <span class="spacer"></span>
+        <button mat-stroked-button color="primary" class="btn btn-primary" (click)="selectAll()">Select
+          all</button>
+      </div>
+      <div class="menu-container">
+        <!-- Menu list goes here -->
+        <ng-container *ngFor="let item of menuList">
+          <div class="menu-item">
+            <mat-checkbox [(ngModel)]="item.selected" color="primary" (click)="toggleDashboardSubtasks(item)"
+              [indeterminate]="isIndeterminate(item)">
+              {{item.menuGroupName}}
+            </mat-checkbox>
+            <ul class="subtask-list">
+              <li *ngFor="let subtask of item.menus">
+                <mat-checkbox [(ngModel)]="subtask.selected" color="primary" (click)="checkDashboardSubtask(item)">
+                  {{subtask.name}}
+                </mat-checkbox>
+              </li>
+            </ul>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="text-end me-3" style="background-color: #ffffff;">
+      <button type="button" mat-flat-button color="accent" (click)="addRolses()">
+        <mat-icon>highlight_off</mat-icon> Cancel
+      </button> &nbsp;
+      <button mat-flat-button color="primary" type="submit" [disabled]=buttonDisable (click)="roleUpdate()">
+        <mat-icon>check_circle_outline</mat-icon>{{userId ? 'Update':'Submit'}}
+      </button>
+    </div>
+  </div>
+</div>

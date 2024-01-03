@@ -1,0 +1,109 @@
+<div class="center p-3" *ngIf="type==='FAILED'">
+  <img src="assets/imgs/failed.png" class="icon">
+  <h1 mat-dialog-title>{{title}}</h1>
+  <div mat-dialog-content>
+    {{message}}
+  </div>
+  <div style="padding-top:40px">
+    <button mat-stroked-button mat-dialog-close color="accent" (click)="close('N')" class="full-btn">Dismiss</button>
+  </div>
+</div>
+
+<div class="center p-3" *ngIf="type==='ALERT'">
+  <img src="assets/imgs/alert.png" class="icon">
+  <h1 mat-dialog-title>{{title}}</h1>
+  <div mat-dialog-content>
+    {{message}}
+  </div>
+  <div style="padding-top:40px">
+    <button mat-stroked-button mat-dialog-close color="accent" (click)="close('N')" class="full-btn">Dismiss</button>
+  </div>
+</div>
+
+<div class="center  p-3" *ngIf="type==='SUCCESS'">
+  <img src="assets/imgs/success.png" class="icon">
+  <h1 mat-dialog-title class="mt-3">{{title}}</h1>
+  <div mat-dialog-content>
+    {{message}}
+  </div>
+  <div style="padding-top:40px">
+    <button mat-stroked-button mat-dialog-close color="primary" (click)="close('N')" class="full-btn">Dismiss</button>
+  </div>
+</div>
+
+
+<div class="center  p-3" *ngIf="type==='CNF_ALERT'">
+  <img src="assets/imgs/alert.png" class="icon">
+  <h1 mat-dialog-title>{{title}}</h1>
+  <div mat-dialog-content>
+    {{message}}
+  </div>
+  <div class="pt-4">
+    <div class="row">
+      <div class="col-6 text-end">
+        <button mat-stroked-button mat-dialog-close color="accent" (click)="close('N')"
+          class="full-btn">Dismiss</button>
+      </div>
+      <div class="col-6 text-start">
+        <button mat-flat-button mat-dialog-close color="primary" (click)="close('Y')" class="full-btn">Proceed</button>
+      </div>
+    </div>
+    <!-- <mat-grid-list cols="2" rowHeight="40px">
+      <mat-grid-tile>
+        <button mat-stroked-button mat-dialog-close color="accent" (click)="close('N')"
+          class="full-btn">Dismiss</button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-flat-button mat-dialog-close color="primary" (click)="close('Y')" class="full-btn">Proceed</button>
+      </mat-grid-tile>
+    </mat-grid-list> -->
+  </div>
+</div>
+<mat-card class="" *ngIf="type==='ALERT_BOX'">
+  <mat-progress-bar mode="determinate" [value]="timeout" color="accent"></mat-progress-bar>
+  <mat-card-header class="border-bottom">
+    <img mat-card-avatar src="assets/imgs/failed.png">
+    <mat-card-title class="title">{{title}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="pt-3 pb-3">{{message}}</mat-card-content>
+  <mat-card-actions align="end" class="pe-3 pb-3">
+    <button mat-flat-button color="accent" mat-dialog-close>Close</button>
+  </mat-card-actions>
+</mat-card>
+<mat-card class="" *ngIf="type==='SUCCESS_ALERT_BOX'">
+  <mat-progress-bar mode="determinate" [value]="timeout" color="primary"></mat-progress-bar>
+  <mat-card-header class="border-bottom">
+    <img mat-card-avatar src="assets/imgs/success.png">
+    <mat-card-title class="title text-success">{{title}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="pt-3 pb-3">{{message}}</mat-card-content>
+  <mat-card-actions align="end" class="pe-3 pb-3">
+    <button mat-button color="primary" mat-dialog-close>Close</button>
+  </mat-card-actions>
+</mat-card>
+<mat-card class="" *ngIf="type==='CNF_ALERT_BOX'">
+  <mat-card-header class="border-bottom">
+    <img mat-card-avatar src="assets/imgs/alert.png">
+    <mat-card-title class="title">{{title}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="pt-3 pb-3">{{message}}</mat-card-content>
+  <mat-card-actions align="end" class="pe-3 pb-3">
+    <button mat-stroked-button color="accent" mat-dialog-close class="me-2">Dismiss</button>
+    <button mat-flat-button color="primary" (click)="close('Y')">Proceed</button>
+  </mat-card-actions>
+</mat-card>
+
+<!-- alert.component.html -->
+<!-- alert.component.html -->
+<mat-card *ngIf="data.type === 'idle_alert'">
+  <mat-progress-bar mode="determinate" [value]="timer" color="accent"></mat-progress-bar>
+  <mat-card-header class="border-bottom">
+    <mat-card-title class="title">{{ data.title }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="pt-3 pb-3">{{ data.message }}</mat-card-content>
+  <mat-card-actions align="end" class="pe-3 pb-3">
+    <button mat-stroked-button color="accent" mat-dialog-close class="me-2" (click)="close('stay')">Stay</button>
+    <button mat-flat-button color="primary" (click)="close('logout')">Logout</button>
+  </mat-card-actions>
+</mat-card>
+

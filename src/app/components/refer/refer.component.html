@@ -1,0 +1,38 @@
+<div class="w-100">
+    <div>
+
+        <mat-card>
+            <div class="text-end">
+                <button mat-icon-button mat-dialog-close color="accent" class="close-btn" (click)="close()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <mat-card-content>
+                <form class="form ps-2 pe-2" [formGroup]="DetailForm">
+                    <div class="text-center">
+                        <img src="assets\imgs\email.png" alt="Mail" class="rounded mx-auto d-block"
+                            style="height: 50px;">
+                    </div>
+                    <mat-card-title>Share via E-mail</mat-card-title>
+                    <mat-card-subtitle>On boarding for new employee</mat-card-subtitle>
+                    <div class="p-4">
+                        <div>
+                            <mat-form-field class="w-100">
+                                <mat-label>E-Mail</mat-label>
+                                <mat-icon matPrefix color="primary">mail</mat-icon>
+                                <input matInput type="email" placeholder="Enter mail" formControlName="emailId"
+                                    name="emailId">
+                            </mat-form-field>
+                        </div>
+                        <div class="p-3">
+                            <button mat-button class="btn btn-primary w-100" [disabled]="DetailForm.invalid || disable"
+                                (click)="Senddata()">
+                                Submit </button>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+</div>

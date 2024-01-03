@@ -1,0 +1,39 @@
+<div class="cgs-container">
+    <div class="c-card bg-white border">
+        <mat-toolbar class="text-primary bg-white border-bottom">
+            <mat-icon>chrome_reader_mode</mat-icon>
+            <span class="c-font ps-2">Work from Status</span>
+        </mat-toolbar>
+        <div class="bg-white p-2">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>Filter</mat-label>
+                        <input matInput (keyup)="filterDepartment($event)" placeholder="Ex. Star R&D" #input>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="mat-elevation-z1 responsive-table">
+                <!-- data-table.component.html -->
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <!-- Define columns -->
+                    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+                        <th mat-header-cell *matHeaderCellDef>{{ formatHeader(column) |titlecase }}</th>
+                        <td mat-cell *matCellDef="let element">
+                            <!-- Display button for 'action' column -->
+                            <button mat-icon-button *ngIf="column === 'action'" aria-label="View" color="primary"
+                                (click)="showDetails(element, 'V')">
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                            <!-- Display data for other columns -->
+                            <ng-container *ngIf="column !== 'action'">{{ element[column] }}</ng-container>
+                        </td>
+                    </ng-container>
+                    <!-- Set up the table row -->
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
+                    aria-label="Select  departments"></mat-paginator>
+            </div>
+        </div>

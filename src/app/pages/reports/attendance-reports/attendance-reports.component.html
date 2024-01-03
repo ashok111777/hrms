@@ -1,0 +1,60 @@
+<div class="cgs-container">
+    <div class="c-card border">
+        <div>
+            <mat-toolbar class="bg-white text-primary border-bottom">
+                <mat-icon>menu</mat-icon>
+                <span class="c-font ps-2">Attendance Report</span>
+            </mat-toolbar>
+        </div>
+        <div class="bg-white p-2">
+            <div class="row" [formGroup]="EmployeeData">
+                <div class="col-lg-4 col-md-6 col-sm-12 text-primary">
+                    <mat-form-field class="full-width">
+                        <mat-label>Department</mat-label>
+                        <mat-select formControlName="team" name="team">
+                            <mat-option value="0">ALL</mat-option>
+                            <!-- <mat-option *ngFor="let d of departmentList" [value]="d.id">
+                                {{d.teamName}}
+                            </mat-option> -->
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 text-primary">
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 text-primary">
+                    <mat-form-field class="full-width">
+                        <mat-label>Month and Year</mat-label>
+                        <input matInput [matDatepicker]="dp" [formControl]="date">
+                        <mat-hint>MM/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+                        <mat-datepicker #dp startView="multi-year" (monthSelected)="setMonthAndYear($event, dp)"
+                            panelClass="example-month-picker">
+                        </mat-datepicker>
+                    </mat-form-field>
+
+
+                </div>
+            </div>
+            <br>
+            <div class="full-width text-center">
+                <button type="submit" (click)="resetForm()" mat-stroked-button color="accent" class="md-btn">
+                    <mat-icon>restart_alt</mat-icon>
+                    Reset
+                </button>
+
+                <div class="btn-group">
+                    <button type="button" mat-raised-button color="primary" class="md-btn dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <mat-icon>download</mat-icon> {{ selectedExportOption }}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button mat-menu-item (click)="GetData('pdf')">Export as PDF</button>
+                        <button mat-menu-item (click)="GetData('xlsx')">Export as XLSX</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div #pdfTable>
+        <!-- This div will be used to render the PDF table -->
+    </div>

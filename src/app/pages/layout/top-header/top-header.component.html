@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+    <!-- <a routerLink="/" class="p-3"><img [src]="global.logo"></a> -->
+        <button (click)="menuToggled.emit(true)" mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="header-title">CGS Portal</span>
+        <button mat-icon-button (click)="checkFullScreenStatus()">
+            <mat-icon *ngIf="!isFullScreen">zoom_out_map</mat-icon>
+            <mat-icon *ngIf="isFullScreen">zoom_in_map</mat-icon>
+        </button>
+    <span class="spacer"></span>
+    <!-- <span class="welcome-text">Hello {{ user }}</span> -->
+    <button mat-icon-button class="me-3" (click)="openMessagesBox($event)">
+        <mat-icon matBadge="3" matBadgeColor="warn">mail_outline</mat-icon>
+    </button>
+    <button mat-icon-button class="me-3" (click)="openNotificationBox($event)">
+        <mat-icon matBadge="5" matBadgeColor="warn">notifications</mat-icon>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="beforeMenu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #beforeMenu="matMenu">
+        <button mat-menu-item (click)="global.toggleRightPane()">
+            <mat-icon color="primary">person</mat-icon>
+            <span class="me-3">Profile &nbsp;</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item color="primary">
+            <mat-icon color="primary">settings</mat-icon>
+            <span class="me-3">Settings &nbsp;</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+            <mat-icon color="warn">logout</mat-icon>
+            <span class="me-3 text-danger fw-bold">Logout</span>
+        </button>
+    </mat-menu>
+</mat-toolbar>

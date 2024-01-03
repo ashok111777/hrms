@@ -1,0 +1,76 @@
+<div class="center-component">
+  <h2>
+    <span>Training Details of {{empDetails.name}} </span>
+
+  </h2>
+  <button mat-icon-button mat-dialog-close color="accent" class="close-btn" (click)="close('N')">
+    <mat-icon>close</mat-icon>
+  </button>
+  <hr>
+  <div class="form ps-2 pe-2">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+
+        <mat-form-field class="full-width">
+          <mat-label>EMP ID</mat-label>
+          <input type="text" matInput autocomplete="off" placeholder="Institute ID" [readonly]="true"
+            [value]="empDetails.employeeId">
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field class="full-width">
+          <mat-label>Team</mat-label>
+          <input type="text" matInput autocomplete="off" placeholder="Team" [readonly]="true" [value]="empDetails.team">
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field class="full-width">
+          <mat-label>EMP Designation</mat-label>
+          <input type="text" matInput autocomplete="off" placeholder="empDesignation" [readonly]="true"
+            [value]="empDetails.empDesignation">
+        </mat-form-field>
+      </div>
+
+    </div>
+    <div class="mat-elevation">
+      <table matTableResponsive class="full-width" mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="product">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Product </th>
+          <td mat-cell *matCellDef="let row"> {{row.product}} </td>
+        </ng-container>
+        <ng-container matColumnDef="assignDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>AssignDate </th>
+          <td mat-cell *matCellDef="let row"> {{row.assignDate}} </td>
+        </ng-container>
+        <ng-container matColumnDef="trainer">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Trainer </th>
+          <td mat-cell *matCellDef="let row"> {{row.trainer}} </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Status </th>
+          <td mat-cell *matCellDef="let row" [ngClass]="{
+            'text-success':row.status === 'COMPLETED',
+            'text-primary':row.status === 'PENDING',
+            'text-danger':row.status === 'REJECTED'
+          }"> {{row.status}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="tableHeaders sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: tableHeaders;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data founds!</td>
+        </tr>
+      </table>
+      <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
+        aria-label="Show Next Employee"></mat-paginator> -->
+      <mat-divider></mat-divider>
+      <!-- <div class="text-end ">
+        <button mat-flat-button mat-dialog-close color="accent">
+          <mat-icon>highlight_off</mat-icon>Close
+        </button> &nbsp;
+        <button mat-flat-button color="primary" (click)="close(data)">
+          <mat-icon>edit_note</mat-icon> Proceed
+        </button>
+      </div> -->
+    </div>
+  </div>
+</div>

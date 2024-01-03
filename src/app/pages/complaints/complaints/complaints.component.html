@@ -1,0 +1,82 @@
+<div class="p-2">
+    <div class="card bg-box">
+        <mat-list>
+            <mat-list-item class="text-primary">
+                <mat-icon matListItemIcon class="text-primary">summarize</mat-icon>
+                <div matListItemTitle class="ps-2 text-primary">Complaint Form </div>
+            </mat-list-item>
+        </mat-list>
+        <mat-divider></mat-divider>
+        <form [formGroup]="userForm" #desigForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>Institute</mat-label>
+                        <mat-select placeholder="Profile" formControlName="inst" name="inst">
+                            <mat-option value="option1" *ngFor="let p of institutes" [value]="p">{{p}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>Team</mat-label>
+                        <mat-select placeholder="Profile" formControlName="profile" name="profile">
+                            <mat-option value="option1" *ngFor="let p of profiles" [value]="p">{{p}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>User ID</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="User ID" formControlName="id"
+                            name="id">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label> Name</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="First Name"
+                            formControlName="firstName" name="firstName">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>Mobile</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="Mobile" formControlName="mobile"
+                            name="mobile">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>Email ID</mat-label>
+                        <input type="email" matInput autocomplete="off" placeholder="Email ID" formControlName="email"
+                            name="email">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="text-center">
+                        <mat-form-field class="full-width">
+                            <mat-label>Complaint Description</mat-label>
+                            <textarea matInput rows="1" required></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="button" mat-flat-button color="accent">
+                    <mat-icon>highlight_off</mat-icon> Cancel
+                </button> &nbsp;
+                <button mat-flat-button color="primary" type="submit">
+                    <mat-icon>check_circle_outline</mat-icon> Proceed
+                </button>
+
+            </div>
+        </form>
+        <br><br>
+
+        <div *ngIf="showSuccessMessage" class="success-message">
+            Thank you for your message! We will get back to you as soon as possible.
+        </div>
+    </div>
+</div>

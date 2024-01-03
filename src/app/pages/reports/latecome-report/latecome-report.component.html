@@ -1,0 +1,61 @@
+<div class="cgs-container">
+    <div class="c-card border">
+        <div>
+            <mat-toolbar class="bg-white text-primary border-bottom">
+                <mat-icon>menu</mat-icon>
+                <span class="c-font ps-2">Latecomer Report</span>
+            </mat-toolbar>
+        </div>
+        <div class="bg-white p-2">
+            <div class="row" [formGroup]="EmployeeData">
+                <div class="col-lg-4 col-md-6 col-sm-12 text-primary">
+                    <mat-form-field class="full-width">
+                        <mat-label>Department</mat-label>
+                        <mat-select formControlName="team" name="team">
+                            <mat-option value="0">ALL</mat-option>
+                            <!-- <mat-option *ngFor="let d of departmentList" [value]="d.id">
+                                {{d.teamName}}
+                            </mat-option> -->
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 text-primary">
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 text-primary">
+                    <mat-form-field class="full-width">
+                        <mat-label>Enter a date range</mat-label>
+                        <mat-date-range-input [formGroup]="EmployeeData" [rangePicker]="picker">
+                            <input matStartDate formControlName="start" placeholder="Start date"
+                                [(ngModel)]="startDate">
+                            <input matEndDate formControlName="end" placeholder="End date" [(ngModel)]="endDate">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                        <mat-error *ngIf="EmployeeData.controls.start.hasError('matStartDateInvalid')">Invalid start
+                            date</mat-error>
+                        <mat-error *ngIf="EmployeeData.controls.end.hasError('matEndDateInvalid')">Invalid end
+                            date</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <br>
+            <div class="full-width text-center">
+                <button type="submit" (click)="resetForm()" mat-stroked-button color="accent" class="md-btn"
+                    color="primary">
+                    <mat-icon>restart_alt</mat-icon>
+                    Reset
+                </button>
+                <div class="btn-group">
+                    <button type="button" mat-raised-button color="primary" class="md-btn dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <mat-icon>download</mat-icon>    {{ selectedExportOption }}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button mat-menu-item (click)="GetData('pdf')">Export as PDF</button>
+                        <button mat-menu-item (click)="GetData('xlsx')">Export as XLSX</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

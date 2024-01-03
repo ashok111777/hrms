@@ -1,0 +1,50 @@
+<div>
+    <div class="bg  text-center">
+
+        <mat-card>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                        <form #loginForm="ngForm" (ngSubmit)="validateForm()" class="form">
+                            <img class="logo" [src]="global.logo">
+                            <h2 style="font-weight: 600;"> Log In</h2>
+                            <mat-error *ngIf="!loginValid">
+                                The username and password were not recognized
+                            </mat-error>
+                            <mat-form-field class="full-width">
+                                <mat-label>Username</mat-label>
+                                <mat-icon matPrefix color="primary">person_2</mat-icon>
+                                <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+                                <mat-error>
+                                    Please provide a valid username
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Password</mat-label>
+                                <mat-icon matPrefix color="primary">lock</mat-icon>
+                                <input matInput type="password" placeholder="Password" [(ngModel)]="password"
+                                    name="password" required [type]="showPassword ? 'text' : 'password'">
+                                <mat-error>
+                                    Please provide a valid password
+                                </mat-error>
+                                <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                                    {{showPassword?'visibility_off':'visibility'}}
+                                </mat-icon>
+                            </mat-form-field>
+                            <div class="d-grid gap-2 p-4">
+                                <button mat-flat-button color="primary" class="btn btn-primary"
+                                    [disabled]="!loginForm.form.valid">Login</button>
+                                <button mat-button color="warn" (click)="openPage('prelogin/forgotpass')">Forgot
+                                    Password?
+                                    Click Here</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <img [src]="global.loginimg" class="sidebar-img">
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="cgs-container">
+    <div class="c-card border">
+        <mat-toolbar class="bg-white text-primary border-bottom">
+            <mat-icon><span class="material-symbols-outlined">
+                    list_alt
+                </span></mat-icon>
+            <span class="c-font ps-2">Add New template</span>
+        </mat-toolbar>
+
+        <div class="p-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="drop-zone" (click)="fileInput.click()" (dragover)="onDragOver($event)"
+                                (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
+                                <input type="file" (change)="onFileSelected($event)" #fileInput hidden>
+                                <div *ngIf="!selectedFile" class="drag-text">
+                                    <mat-icon>cloud_upload</mat-icon>
+                                    <p>Click here or drag &amp; drop files to upload</p>
+                                </div>
+                                <div *ngIf="selectedFile" class="file-preview" (click)="fileInput.click()">
+                                    <img [src]="previewUrl" alt="Preview Image">
+                                    <p>{{ selectedFile.name }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <mat-card>
+                            <mat-card-content class="p-3">
+                                <form [formGroup]="templateform">
+                                    <div>
+                                        <mat-form-field class="full-width">
+                                            <mat-label> Name</mat-label>
+                                            <input type="text" matInput autocomplete="off" placeholder="Name"
+                                                formControlName="Name" name="Name">
+                                            <mat-hint></mat-hint>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div>
+                                        <mat-form-field class="full-width">
+                                            <mat-label>Designation</mat-label>
+                                            <input type="text" matInput autocomplete="off" placeholder="Name"
+                                                formControlName="Designation" name="Designation">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div>
+                                        <mat-form-field class="full-width">
+                                            <mat-label>Wishes</mat-label>
+                                            <textarea matInput matInput autocomplete="off" placeholder="Wishes"
+                                                formControlName="Wishes" name="Wishes"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                    <div>
+                                        <mat-form-field class="full-width">
+                                            <mat-label>Description</mat-label>
+                                            <input type="text" matInput autocomplete="off" placeholder="Description"
+                                                formControlName="Description" name="Description">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                        <button mat-stroked-button color="warn" class="me-md-2"
+                                            type="button">Back</button>
+                                        <button mat-stroked-button color="primary" type="button">Submit</button>
+                                    </div>
+                                </form>
+                            </mat-card-content>
+
+
+                        </mat-card>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>

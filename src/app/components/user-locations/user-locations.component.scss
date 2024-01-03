@@ -1,0 +1,47 @@
+#map {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.right {
+    position: absolute;
+    float: right;
+    right: 0px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.left{
+  font-weight: 500;
+  font-size: medium;
+  text-align: end;
+}
+.righter{
+  font-weight: 500;
+  font-size: medium;
+  text-align: start;
+}
+
+.dropdown {
+  position: relative;
+  animation-name: example;
+  animation-duration: 5s;
+}
+
+@keyframes example {
+  0% {
+    left: 0px;
+    bottom: 500px;
+  }
+
+  100% {
+    left: 0px;
+    bottom: 0px;
+  }
+}

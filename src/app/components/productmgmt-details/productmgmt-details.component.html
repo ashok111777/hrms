@@ -1,0 +1,54 @@
+<div class="center-component">
+    <h2>
+        <span *ngIf="data.mode==='E'||data.mode==='V'">Product Details</span>
+        <span *ngIf="data.mode==='A'">Add New Product</span>
+    </h2>
+    <button mat-icon-button mat-dialog-close color="accent" class="close-btn" (click)="close('N')">
+        <mat-icon>close</mat-icon>
+    </button>
+    <hr>
+    <div class="form ps-2 pe-2">
+        <form [formGroup]="departmentFormGroup" #desigForm="ngForm">
+            <img [src]="global.departmentBanner" style="width:100%">
+            <span class="mt-1"></span>
+            <!-- <mat-form-field  class="full-width" *ngIf="data.mode==='V'">
+                <mat-label>Department ID</mat-label>
+                <input type="text" matInput autocomplete="off" placeholder="Department ID" [readonly]="data.mode==='V'"
+                    [value]="data.id" formControlName="id" name="id">
+            </mat-form-field> -->
+            <mat-form-field class="full-width">
+                <mat-label>Department Name</mat-label>
+                <input type="text" matInput autocomplete="off" placeholder="Department Name"
+                    [readonly]="data.mode==='V'" [value]="data.productName" formControlName="productName"
+                    name="productName">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Description</mat-label>
+                <input type="text" matInput autocomplete="off" placeholder="Description" [readonly]="data.mode==='V'"
+                    [value]="data.productDescription" formControlName="productDescription" name="productDescription">
+            </mat-form-field>
+            <div class="text-end pb-3" *ngIf="data.mode==='V'">
+                <button type="button" mat-flat-button mat-dialog-close color="accent" (click)="close('N')">
+                    <mat-icon>highlight_off</mat-icon> Cancel
+                </button>
+            </div>
+            <div class="text-end pb-3" *ngIf="data.mode==='E'">
+                <button type="button" mat-flat-button mat-dialog-close color="accent" (click)="close(data)">
+                    <mat-icon>highlight_off</mat-icon>Cancel
+                </button> &nbsp;
+                <button type="submit" mat-flat-button color="primary" (click)="update()">
+                    <mat-icon>edit_note</mat-icon> Proceed
+                </button>
+            </div>
+            <div class="text-end pb-3" *ngIf="data.mode==='A'">
+                <button type="button" mat-flat-button mat-dialog-close color="accent" (click)="close(data)">
+                    <mat-icon>highlight_off</mat-icon> Cancel
+                </button> &nbsp;
+                <button type="submit" mat-flat-button color="primary" (click)="sendSaveRequest()" type="submit"
+                    [disabled]="!desigForm.valid || loaderService.loading">
+                    <mat-icon>check_circle_outline</mat-icon> Proceed &nbsp;
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="center-component m-0 p-0">
+    <div class="border-bottom">
+        <h2 class="text-primary">
+            <span *ngIf="user.mode!=='A'">Hour-req</span>
+            <!-- <span *ngIf="user.mode==='A'">Add New User</span> -->
+        </h2>
+        <button mat-icon-button color="accent" class="close-btn" (click)="close($event)">
+            <mat-icon>close</mat-icon>
+        </button>
+        </div>
+    <div class="p-3">
+        <form [formGroup]="userForm" #desigForm="ngForm">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12" *ngIf="user.mode!=='A'">
+                    <mat-form-field class="full-width">
+                        <mat-label>emp id</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="emp id" readonly="true"
+                            formControlName="empid" name="empid">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>fullName</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="fullName"
+                            [readonly]="user.mode==='V'" formControlName="fullName" name="fullName">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>team</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="Last Name"
+                            [readonly]="user.mode==='V'" formControlName="team" name="team">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>Mobile</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="Mobile" [readonly]="user.mode==='V'"
+                            formControlName="mobile" name="mobile">
+
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>designation</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="designation"
+                            [readonly]="user.mode==='V'" formControlName="designation" name="designation">
+                    </mat-form-field>
+                </div>
+
+            </div>
+        </form>
+        <br><br>
+        <!-- <div class="text-end">
+            <button type="button" mat-flat-button color="accent" (click)="close($event)">
+                <mat-icon>highlight_off</mat-icon> Cancel
+            </button> &nbsp;
+            <button mat-flat-button color="primary" type="submit">
+                <mat-icon>check_circle_outline</mat-icon> Proceed
+            </button>
+        </div> -->
+    </div>
+</div>

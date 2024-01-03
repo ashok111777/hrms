@@ -1,0 +1,49 @@
+<div class="cgs-container">
+  <div class="c-card border rounded">
+    <mat-toolbar class="bg-white text-primary border-bottom">
+      <mat-icon>cake</mat-icon>
+      <span class="C-font ps-2">Kudos Wishes</span>
+
+      <div style="position:absolute;right: 20px">
+        <button mat-raised-button color="primary" class="btn" routerLink="/main/kudoswish-templates">
+          <mat-icon>add</mat-icon>Add Template</button>
+      </div>
+    </mat-toolbar>
+    <div class="row p-3">
+      <div class="mat-elevation-z3">
+        <table matTableResponsive mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="empId">
+            <th mat-header-cell *matHeaderCellDef> EmployeeId </th>
+            <td mat-cell *matCellDef="let row"> {{row.empId}} </td>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.date}} </td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+          </ng-container>
+          <ng-container matColumnDef="designation">
+            <th mat-header-cell *matHeaderCellDef> Designation </th>
+            <td mat-cell *matCellDef="let row"> {{row.designation}} </td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-icon-button aria-label="View" color="primary" (click)="showDetails(row, 'V')">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-icon-button aria-label="Edit" class="text-secondary" (click)="showDetails(row, 'E')">
+                <mat-icon>edit_note</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedcolumns sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedcolumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

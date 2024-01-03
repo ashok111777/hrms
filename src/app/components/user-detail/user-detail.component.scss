@@ -1,0 +1,14 @@
+.center-component {
+    margin:0px !important
+}
+
+/* my-component.component.css */
+@keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  

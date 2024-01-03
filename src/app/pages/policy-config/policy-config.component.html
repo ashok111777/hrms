@@ -1,0 +1,322 @@
+<div class="page-outer">
+    <mat-toolbar>
+        <span>
+
+            <span> <mat-icon>perm_data_setting</mat-icon>&nbsp;Policy Configuration</span>
+        </span>
+        <span class="flexExpand"></span>
+        <span>
+            <button [color]="enableEdit === false? 'accent':''" mat-icon-button (click)="editSettings('V')">
+                <mat-icon>visibility</mat-icon>
+            </button>
+            <button [color]="enableEdit === false? '':'accent'" mat-icon-button (click)="editSettings('E')">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </span>
+    </mat-toolbar>
+    <form [formGroup]="configForm" (submit)="updateSettings()">
+        <mat-card>
+            <div class="row">
+                <mat-card-header>
+                    <mat-card-title>Work-Place timings Configuration</mat-card-title>
+                </mat-card-header>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>Log-In Time</h4>
+                        <mat-form-field class="custom-input">
+                            <div *ngIf="enableEdit === true">
+                                <mat-label class="custom-label">Click here</mat-label>
+                                <input matInput [ngxTimepicker]="logInTimepicker" formControlName="inTime" [format]="24"
+                                    readonly>
+                                <ngx-material-timepicker #logInTimepicker>
+                                </ngx-material-timepicker>
+                            </div>
+                            <div *ngIf="enableEdit === false">
+                                <input matInput formControlName="inTime" [format]="24" readonly>
+                            </div>
+                        </mat-form-field>
+                    </mat-card-content>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>Log-Out Time</h4>
+                        <mat-form-field class="custom-input">
+                            <div *ngIf="enableEdit === true">
+                                <mat-label class="custom-label">Click here</mat-label>
+                                <input matInput [ngxTimepicker]="logOutTimepicker" formControlName="outTime"
+                                    [format]="24" readonly>
+                                <ngx-material-timepicker #logOutTimepicker>
+                                </ngx-material-timepicker>
+                            </div>
+                            <div *ngIf="enableEdit === false">
+                                <input matInput formControlName="outTime" [format]="24" readonly>
+                            </div>
+                        </mat-form-field>
+                    </mat-card-content>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row">
+                <mat-card-header>
+                    <mat-card-title>Work-Place Location Configuation</mat-card-title>
+                </mat-card-header>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>Latitude</h4>
+                        <div>
+                            <mat-form-field class="custom-input">
+                                <mat-label class="custom-label">latitude</mat-label>
+                                <input (keypress)="validate($event)" matInput formControlName="latitude"
+                                    [readonly]="!enableEdit">
+                            </mat-form-field>
+                        </div>
+                    </mat-card-content>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>Longitude</h4>
+                        <mat-form-field class="custom-input">
+                            <mat-label class="custom-label">longitude</mat-label>
+                            <input (keypress)="validate($event)" matInput formControlName="longitude"
+                                [readonly]="!enableEdit">
+                        </mat-form-field>
+                    </mat-card-content>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>Range</h4>
+                        <mat-form-field class="custom-input">
+                            <mat-label class="custom-label">range</mat-label>
+                            <mat-hint>*In Meters</mat-hint>
+                            <input type="number" matInput formControlName="range" [readonly]="!enableEdit">
+                        </mat-form-field>
+                    </mat-card-content>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row">
+                <mat-card-header>
+                    <mat-card-title>Designation Configuation</mat-card-title>
+                </mat-card-header>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>Team Lead</h4>
+                        <mat-form-field class="custom-input">
+                            <mat-label class="custom-label">Please Select</mat-label>
+                            <mat-select formControlName="tlId">
+                                <mat-option *ngFor="let designation of designationList"
+                                    [disabled]="enableEdit === false"
+                                    [value]="designation.id">{{designation.designation}}</mat-option>
+                            </mat-select>
+                            <mat-hint align="end">Please select Team Lead Designation from below
+                                list!</mat-hint>
+                        </mat-form-field>
+                    </mat-card-content>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>Product Lead</h4>
+                        <mat-form-field class="custom-input">
+                            <mat-label class="custom-label">Please Select</mat-label>
+                            <mat-select formControlName="plId">
+                                <mat-option *ngFor="let designation of designationList"
+                                    [disabled]="enableEdit === false"
+                                    [value]="designation.id">{{designation.designation}}</mat-option>
+                            </mat-select>
+                            <mat-hint align="end">Please select Product Lead Designation from below
+                                list!</mat-hint>
+                        </mat-form-field>
+                    </mat-card-content>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>Manager</h4>
+                        <mat-form-field class="custom-input">
+                            <mat-label class="custom-label">Please Select</mat-label>
+                            <mat-select formControlName="managerId">
+                                <mat-option *ngFor="let designation of designationList"
+                                    [disabled]="enableEdit === false"
+                                    [value]="designation.id">{{designation.designation}}</mat-option>
+                            </mat-select>
+                            <mat-hint align="end">Please select Manager Designation from below
+                                list!</mat-hint>
+                        </mat-form-field>
+                    </mat-card-content>
+                </div>
+            </div>
+            <br>
+            <mat-divider></mat-divider>
+            <div class="row">
+                <mat-card-header>
+                    <mat-card-title>Product Training Configuation</mat-card-title>
+                </mat-card-header>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>Products</h4>
+                        <mat-form-field class="custom-input">
+                            <mat-label class="custom-label">Please Select</mat-label>
+                            <mat-select multiple (valueChange)="getSelectedList($event)" formControlName="products">
+                                <mat-option *ngFor="let product of productList" [disabled]="enableEdit === false"
+                                    [value]="product.id">{{product.teamName}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-content>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <div *ngIf="selectedList?.length > 0">
+                            <mat-chip-listbox>
+                                <mat-chip style="background-color: #c0e7fc;"
+                                    *ngFor="let product of selectedList">{{product.teamName}}</mat-chip>
+                            </mat-chip-listbox>
+                        </div>
+                    </mat-card-content>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row">
+                <mat-card-header>
+                    <mat-card-title>Leave Eligibility Configuation</mat-card-title>
+                </mat-card-header>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>Higher Management</h4>
+                        <mat-form-field class="custom-input">
+                            <mat-label class="custom-label">Please Select</mat-label>
+                            <mat-select formControlName="leaveEligiblity">
+                                <mat-option *ngFor="let day of days" [value]="day"
+                                    [disabled]="enableEdit === false">{{day}} days</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-content>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center">
+                    <mat-hint style="padding-left:10px;">*for Higher Management Please Configure Leave
+                        Eligibility as 2.0
+                        days</mat-hint>
+                </div>
+                <mat-divider></mat-divider>
+            </div>
+            <div class="row">
+                <mat-card-header>
+                    <mat-card-title>Leave Notification Configuation</mat-card-title>
+                </mat-card-header>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>List of Users</h4>
+                        <mat-form-field class="custom-input">
+                            <mat-label class="custom-label">Please Select Users</mat-label>
+                            <mat-select multiple (valueChange)="getSelectedUserList($event, 'LEAVE')"
+                                formControlName="leaveNotificationUser">
+                                <mat-option *ngFor="let user of userList" [disabled]="enableEdit === false"
+                                    [value]="user.userId">{{user.userName}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-content>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <div *ngIf="leaveNotifUsers?.length > 0">
+                            <mat-chip-listbox>
+                                <mat-chip style="background-color: #c0e7fc;"
+                                    *ngFor="let user of leaveNotifUsers">{{user.userName}}</mat-chip>
+                            </mat-chip-listbox>
+                        </div>
+                    </mat-card-content>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row">
+                <mat-card-header>
+                    <mat-card-title>WFH Notification Configuation</mat-card-title>
+                </mat-card-header>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>List of Users</h4>
+                        <mat-form-field class="custom-input">
+                            <mat-label class="custom-label">Please Select Users</mat-label>
+                            <mat-select multiple (valueChange)="getSelectedUserList($event, 'WFH')"
+                                formControlName="wfhNotificationUser">
+                                <mat-option *ngFor="let user of userList" [disabled]="enableEdit === false"
+                                    [value]="user.userId">{{user.userName}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-content>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <div *ngIf="wfhNotifUsers?.length > 0">
+                            <mat-chip-listbox>
+                                <mat-chip style="background-color: #c0e7fc;"
+                                    *ngFor="let user of wfhNotifUsers">{{user.userName}}</mat-chip>
+                            </mat-chip-listbox>
+                        </div>
+                    </mat-card-content>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row">
+                <mat-card-header>
+                    <mat-card-title>Probation Notification Configuation</mat-card-title>
+                </mat-card-header>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>List of Users</h4>
+                        <mat-form-field class="custom-input">
+                            <mat-label class="custom-label">Please Select Users</mat-label>
+                            <mat-select multiple (valueChange)="getSelectedUserList($event, 'PROB')"
+                                formControlName="probationNotificationUser">
+                                <mat-option *ngFor="let user of userList" [disabled]="enableEdit === false"
+                                    [value]="user.userId">{{user.userName}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-content>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <div *ngIf="probNotifUsers?.length > 0">
+                            <mat-chip-listbox>
+                                <mat-chip style="background-color: #c0e7fc;"
+                                    *ngFor="let user of probNotifUsers">{{user.userName}}</mat-chip>
+                            </mat-chip-listbox>
+                        </div>
+                    </mat-card-content>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row">
+                <mat-card-header>
+                    <mat-card-title>Late-come Notification Configuation</mat-card-title>
+                </mat-card-header>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <h4>List of Users</h4>
+                        <mat-form-field class="custom-input">
+                            <mat-label class="custom-label">Please Select Users</mat-label>
+                            <mat-select multiple (valueChange)="getSelectedUserList($event, '')"
+                                formControlName="lateComeNotificationUser">
+                                <mat-option *ngFor="let user of userList" [disabled]="enableEdit === false"
+                                    [value]="user.userId">{{user.userName}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-content>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <mat-card-content>
+                        <div *ngIf="lateComeNotifUsers?.length > 0">
+                            <mat-chip-listbox>
+                                <mat-chip style="background-color: #c0e7fc;"
+                                    *ngFor="let user of lateComeNotifUsers">{{user.userName}}</mat-chip>
+                            </mat-chip-listbox>
+                        </div>
+                    </mat-card-content>
+                </div>
+            </div>
+            <div class="row">
+                <div class="text-center button-padding" *ngIf="enableEdit">
+                    <button color="primary" mat-raised-button type="submit">Update Settings</button>
+                </div>
+            </div>
+        </mat-card>
+    </form>
+</div>

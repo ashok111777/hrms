@@ -1,0 +1,60 @@
+
+// .html-header {
+//   margin: 15px 0 5px;
+// }
+
+// .html {
+//   border: 1px solid #ddd;
+//   border-radius: 4px;
+//   padding: 0.5rem;
+//   background-color: #f1f1f1;
+//   min-height: 20px;
+//   max-height: 10rem;
+//   overflow: auto;
+// }
+
+
+// ::ng-deep angular-editor-toolbar button i {
+//   font-family: FontAwesome !important; 
+//   } 
+
+:host {
+  ::ng-deep {
+    ng2-tag-input.bootstrap3-info {
+      background-color: #fff;
+      display: inline-block;
+      color: #555;
+      vertical-align: middle;
+      max-width: 100%;
+      height: 47px;
+      line-height: 44px;
+      
+  border-radius: 4px;
+  box-shadow: inset  1px #0006;
+  border: 2px solid #ccc;
+
+  }
+  .ng2-tag-input__text-input[_ngcontent-ng-c1148831952] {
+    display: inline;
+    vertical-align: text-bottom;
+    border: none;
+    padding: 0 0.5rem;
+    height: 24px;
+    font-size: 1em;
+    font-family: Roboto,Helvetica Neue,sans-serif;
+  }
+  .bootstrap3-info.ng2-tag-input[_ngcontent-ng-c3083841879] {
+    display: block;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    padding: 4px;
+    cursor: text;
+    border-radius: 4px;
+    box-shadow: inset  1px #0006 !important;
+    border: 1px solid gray;
+}
+
+}
+
+}

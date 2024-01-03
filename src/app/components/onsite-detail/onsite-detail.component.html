@@ -1,0 +1,217 @@
+<div class="outer-div">
+    <p>
+        <mat-toolbar color="primary">
+            <span>
+                <button mat-icon-button><mat-icon>public</mat-icon></button>
+            </span>
+            <span>Onsite Employee Details</span>
+        </mat-toolbar>
+    </p>
+    <div>
+        <mat-tab-group [(selectedIndex)]="tabIndex" (selectedTabChange)="changeTab($event)">
+            <mat-tab label="ADD">
+                <form [formGroup]="onsiteEmpForm">
+                    <mat-card>
+                        <mat-card-content>
+                            <div class="row">
+                                <h2>Step: 1</h2>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <h4>Please Select Employee from below list to proceed: </h4>
+                                    <mat-form-field>
+                                        <mat-label>Employee List</mat-label>
+                                        <mat-select formControlName="name" (valueChange)="bindData($event)">
+                                            <mat-option *ngFor="let emp of empDetails"
+                                                [value]="emp.employeeId">{{emp.firstName}} {{emp.lastName}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!-- <div class="col-lg-4 col-md-6 col-sm-12"></div> -->
+                                <div class="col-lg-5 col-md-6 col-sm-12" *ngIf="empCode">
+                                    <div class="row">
+                                        <mat-chip><span style="font-weight: bold;">Employee
+                                                Id:</span>&nbsp;{{onsiteEmpForm.controls['empCode'].value}}</mat-chip>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <mat-chip><span
+                                                style="font-weight: bold;">Designation:</span>&nbsp;{{onsiteEmpForm.controls['desg'].value}}</mat-chip>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <mat-chip><span
+                                                style="font-weight: bold;">Department:</span>&nbsp;{{onsiteEmpForm.controls['dept'].value}}</mat-chip>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div *ngIf="empCode">
+                                <mat-divider></mat-divider>
+                                <div class="row">
+                                    <h2>Step:2</h2>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <h4>Please Select Product from below List:</h4>
+                                        <mat-form-field>
+                                            <mat-label>Product List</mat-label>
+                                            <mat-select formControlName="productName">
+                                                <mat-option [value]="product.id"
+                                                    *ngFor="let product of productDetails">{{product.productName}}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <h4>Please Select From Date</h4>
+                                        <mat-form-field>
+                                            <mat-label>From Date</mat-label>
+                                            <input matInput [matDatepicker]="fromDatePicker" formControlName="fromDate"
+                                                readonly>
+                                            <mat-hint>DD-MM-YYYY</mat-hint>
+                                            <mat-datepicker-toggle matIconSuffix
+                                                [for]="fromDatePicker"></mat-datepicker-toggle>
+                                            <mat-datepicker #fromDatePicker></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <h4>Please Select To Date</h4>
+                                        <mat-form-field>
+                                            <mat-label>To Date</mat-label>
+                                            <input matInput [matDatepicker]="toDatePicker" formControlName="toDate"
+                                                readonly [min]="onsiteEmpForm.controls['fromDate'].value">
+                                            <mat-hint>DD-MM-YYYY</mat-hint>
+                                            <mat-datepicker-toggle matIconSuffix
+                                                [for]="toDatePicker"></mat-datepicker-toggle>
+                                            <mat-datepicker #toDatePicker></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <mat-divider></mat-divider>
+                                <div class="row">
+                                    <h2>Step:3</h2>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <h4>Please Enter Country</h4>
+                                        <mat-form-field>
+                                            <mat-label>Country</mat-label>
+                                            <input matInput formControlName="countryName">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <h4>Please Enter Location</h4>
+                                        <mat-form-field>
+                                            <mat-label>Location</mat-label>
+                                            <input matInput formControlName="onsiteLocation">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h4>Purpose</h4>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Please Mention Purpose of Visit</mat-label>
+                                        <!-- <input matInput formControlName="purposeOfVisit"> -->
+                                        <textarea matInput formControlName="purposeOfVisit" cdkTextareaAutosize
+                                            #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                                            cdkAutosizeMaxRows="5"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="d-flex flex-row justify-content-end">
+                                    <button mat-raised-button class="md-btn custom-btn" color="accent"
+                                        (click)="resetForm()">RESET</button>
+                                    <button mat-raised-button color="primary" class="md-btn custom-btn"
+                                        [disabled]="onsiteEmpForm.invalid" (click)="showCnfPopUp()">ADD</button>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </form>
+            </mat-tab>
+            <mat-tab label="EXISTING">
+                <div *ngIf="onsiteEmployeeList?.length === 0">
+                    <mat-card class="item-center">
+                        <mat-card-header class="text-center">
+                            <mat-card-title>No Data Found!</mat-card-title>
+                            <mat-card-subtitle>
+                                <button class="md-btn" color="accent" mat-raised-button
+                                    (click)="getOnsiteEmployees()">retry</button>
+                                <button class="md-btn" color="primary" mat-raised-button
+                                    (click)="tabIndex = 0">Create</button>
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <div class="row text-center">
+                                <lottie-player src="/assets/JSON/no-data-found.json" autoplay loop mode="normal"
+                                    style="width: 200px;"></lottie-player>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div *ngIf="onsiteEmployeeList.length > 0">
+                    <div class="custom-card">
+                        <mat-toolbar class="custom-toolbar">
+                            <span>Onsite Employees List&nbsp;</span>
+                            <span>({{onsiteEmployeeList.length}})</span>
+                        </mat-toolbar>
+                        <mat-card tabindex="0">
+                            <mat-card-header>
+                                <mat-form-field class="full-width" appearance="fill">
+                                    <mat-label>Search</mat-label>
+                                    <input matInput placeholder="Please Search with Name or Emp ID only"
+                                        [(ngModel)]="searchTerm">
+                                </mat-form-field>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <div class="row g-2">
+                                    <div *ngIf="(getPageData() | filter:searchTerm) === null">
+                                        <mat-card>
+                                            <mat-card-header>
+                                                <mat-card-title>
+                                                    No Data Found
+                                                </mat-card-title>
+                                            </mat-card-header>
+                                        </mat-card>
+                                    </div>
+                                    <mat-card class="emp-card" *ngFor="let emp of getPageData() | filter:searchTerm">
+                                        <mat-card-header>
+                                            <mat-card-title-group style="color: #263a78;">
+                                                <mat-card-title> {{emp.name}}</mat-card-title>
+                                                <mat-card-subtitle
+                                                    style="color: #263a78;">ID:&nbsp;{{emp.employeeId}}</mat-card-subtitle>
+                                                <mat-card-subtitle
+                                                    style="color: #263a78;">{{emp.designation}}</mat-card-subtitle>
+                                                <mat-card-subtitle
+                                                    style="color: #263a78;">{{emp.team}}</mat-card-subtitle>
+                                            </mat-card-title-group>
+                                            <span>
+                                                <button mat-icon-button
+                                                    [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon>
+                                                </button>
+                                            </span>
+                                            <mat-menu #menu>
+                                                <button mat-menu-item (click)="getDetails(emp, 'V')">
+                                                    <!-- <mat-icon>visibility</mat-icon> -->
+                                                    <span>View</span>
+                                                </button>
+                                                <button mat-menu-item (click)="getDetails(emp, 'E')">
+                                                    <!-- <mat-icon>edit</mat-icon> -->
+                                                    <span>Update</span>
+                                                </button>
+                                                <button mat-menu-item (click)="cnfDelete(emp)">
+                                                    <!-- <mat-icon>delete</mat-icon> -->
+                                                    <span>Delete</span>
+                                                </button>
+                                            </mat-menu>
+                                        </mat-card-header>
+                                        <div style="position: absolute; bottom: 0px; right:0px;">
+                                            <!-- <img class="card-img" src="../../../assets/imgs/globe.png"> -->
+                                            <img class="card-img" src="../../../assets/imgs/globe-2.png">
+                                        </div>
+                                    </mat-card>
+                                </div>
+                            </mat-card-content>
+                            <mat-paginator [length]="totalPageItems" [pageSize]="pageSize" [pageIndex]="pageIndex"
+                                [pageSizeOptions]="pageSizeArray" (page)="changePage($event)"></mat-paginator>
+                        </mat-card>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

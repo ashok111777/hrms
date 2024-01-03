@@ -1,0 +1,69 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.outer-div {
+  margin: 10px;
+  // background-color: #E0F4FF;
+}
+
+.custom-btn {
+  // width: 150px !important;
+  height: 50px !important;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.item-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-card {
+  margin: 16px 16px 16px 16px;
+}
+
+.custom-toolbar {
+  background-color: #AEDEFC;
+}
+
+
+.emp-card {
+  height: 220px !important;
+  width: 320px !important;
+  // background-color: #F0F0F0;
+  // background-color: #93cdd9;
+  background: linear-gradient(#96d0dc, #5e9daa);
+  box-shadow: 0 8px 6px -6px black;
+  border-radius: 20px;
+  margin: 6px !important;
+
+  .card-img {
+    // background-image: url("../../../assets/imgs/emp-card.png");
+    height: 120px;
+    width: 100%;
+  }
+}
+
+.bottom-padding {
+  padding-bottom: 16px;
+}
+
+.flex-row {
+  display: flex;
+  flex-flow: row;
+}
+
+.card-icon {
+  height: 25px !important;
+  width: 25px !important;
+  border-radius: 50%;
+}
+
+.align-end {
+  position: absolute;
+  right: 0px !important;
+}

@@ -1,0 +1,92 @@
+.bg-box{
+    min-height: calc(100vh - 90px);
+}
+
+.communication-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+    word-break: break-all;
+}
+
+.communication-margin {
+    margin: 0 10px;
+    word-break: break-all;
+}
+
+.success-box {
+    width: 400px;
+    margin: auto;
+    text-align: center;
+
+    .success-icon {
+        height: 70px;
+        width: 70px;
+    }
+}
+.right-stick-box{
+    position: relative;
+    padding-right:16px;
+}
+.right-stick {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+.drag-drop-box{
+    min-height: 220px;
+    width:100%;
+    border:1px dashed #ccc;
+    text-align: center;
+    cursor: pointer;
+    div{
+        margin-top:80px;
+    }
+}
+
+
+
+.img-box {
+    min-height: 220px;
+    min-width: 220px;
+    width: 100% !important;
+    border: 1px dotted black;
+    margin: auto;
+}
+.img-placeholder {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+.input_container {
+    border: 1px solid #e5e5e5;
+    margin:30px;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: #fff;
+    color: #000;
+    border: 0px;
+    border-right: 1px solid #e5e5e5;
+    padding: 10px 15px;
+    margin-right: 20px;
+    transition: 0.5s;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #eee;
+    border: 0px;
+    border-right: 1px solid #e5e5e5;
+}
+
+.flex{
+    flex: 1 1 auto;
+}
+
+mat-step {
+    pointer-events: none !important;
+}
+
+

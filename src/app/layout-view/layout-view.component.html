@@ -1,0 +1,16 @@
+<div [class.example-is-mobile]="mobileQuery.matches">
+    <app-top-menu (menuToggled)="toggle()"></app-top-menu>
+    <mat-drawer-container hasBackdrop="false">
+        <mat-drawer [mode]="mode" [opened]="opened" position="start">
+            <app-side-menu [menu]="menu"></app-side-menu>
+        </mat-drawer>
+        <!-- Right Side Drawer for profile details -->
+        <!-- <mat-drawer mode="over" [opened]="global.rightPane" position="end" class="right-panel bg">
+            <app-user-profile [userDetails]="userDetails"></app-user-profile>
+        </mat-drawer> -->
+        <!-- Expansion panel content -->
+        <mat-drawer-content [class.margin-left]="opened" >
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

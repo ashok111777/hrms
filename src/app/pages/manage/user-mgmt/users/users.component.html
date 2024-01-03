@@ -1,0 +1,161 @@
+<div class="w-100 cgs-containe p-3 pt-2">
+    <!-- <div class="text-end p-2 mb-2">
+        <button mat-raised-button color="primary" class="btn" (click)="resetUser()">
+            <mat-icon>add</mat-icon> New User</button>
+    </div> -->
+    <div class="row px-3">
+        <div class="col-md-4 py-2" style="background-color: #ffffff;">
+            <mat-form-field class="full-width">
+                <mat-label>Search</mat-label>
+                <input matInput type="text" [(ngModel)]="searchInput" (ngModelChange)="filterUsers()">
+            </mat-form-field>
+            <div class="contact-list-container">
+                <div class="user-access">
+                    <ng-container *ngFor="let item of filteredUserList">
+                        <div class="user-item">
+                            <ng-container>
+                                <div class="avatar-container">
+                                    <img src="assets/imgs/user-empty.png" class="avatar" alt="User Avatar">
+                                </div>
+                                <div class="user-details" (click)="userlist(item.userId,item.admin)"
+                                    [class.selected-user]="item.userId === selectedUser">
+                                    <div class="user-name">{{ item.fullName }}</div>
+                                    <div class="user-email">{{ item.emailId }}</div>
+                                </div>
+                            </ng-container>
+                            <div class="delete-button" *ngIf="!item.admin">
+                                <button mat-icon-button aria-label="Delete" color="accent"
+                                    [disabled]="item.fullName === 'No users found'"
+                                    (click)="askForDeletion(item.empCode)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 py-2" style="background-color: #ffffff;">
+            <form [formGroup]="userForm" #desigForm="ngForm">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field class="full-width">
+                            <mat-label>Role</mat-label>
+                            <mat-select placeholder="Profile" formControlName="profileId" name="profileId">
+                                <mat-option *ngFor="let p of profiles" [value]="p.id">{{p.profileName}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field class="full-width">
+                            <mat-label>Institute</mat-label>
+                            <mat-select placeholder="Profile" formControlName="institudeName" name="institudeName">
+                                <mat-option *ngFor="let p of institutes" [value]="p.insId">{{p.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field class="full-width">
+                            <mat-label>First Name</mat-label>
+                            <input type="text" maxlength="30" onkeydown="return /[a-z]/i.test(event.key)" matInput
+                                autocomplete="off" placeholder="First Name" formControlName="firstName"
+                                name="firstName">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field class="full-width">
+                            <mat-label>Last Name</mat-label>
+                            <input type="text" maxlength="30" onkeydown="return /[a-z]/i.test(event.key)" matInput
+                                autocomplete="off" placeholder="Last Name" formControlName="lastName" name="lastName">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field class="full-width">
+                            <mat-label>Gender</mat-label>
+                            <mat-select formControlName="gender" name="gender">
+                                <mat-option value="FEMALE">Female</mat-option>
+                                <mat-option value="MALE">Male</mat-option>
+                                <mat-option value="OTHER">Other</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <!-- <mat-form-field class="full-width">
+                            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" formControlName="dob"
+                                (keypress)="numberOnly($event)">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field> -->
+                        <mat-form-field class="full-width">
+                            <mat-label>Date of Birth</mat-label>
+                            <input matInput [matDatepicker]="docPicker" formControlName="dob"
+                                (keypress)="numberOnly($event)">
+                            <mat-datepicker-toggle matSuffix [for]="docPicker"></mat-datepicker-toggle>
+                            <mat-datepicker #docPicker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field class="full-width">
+                            <mat-label>Employee Code</mat-label>
+                            <input type="tel" matInput autocomplete="off" placeholder="Emp Code"
+                                formControlName="empCode" name="empCode" maxlength="6" (keypress)="numberOnly($event)">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field class="full-width">
+                            <mat-label>Mobile</mat-label>
+                            <input matInput placeholder="Mobile Number" formControlName="mobileNo"
+                                (keypress)="numberOnly($event)" type="tel" maxlength="10">
+                            <!-- <mat-error *ngIf="userForm.get('mobileNo')?.hasError('required')">Mobile
+                                Number is required</mat-error>
+                            <mat-error *ngIf="userForm.get('mobileNo')?.hasError('pattern')">Only
+                                numeric values are allowed</mat-error>
+                            <mat-hint></mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field class="full-width">
+                            <mat-label>Email ID</mat-label>
+                            <input matInput placeholder="Email" formControlName="emailId" type="email" maxlength="30">
+                            <mat-error *ngIf="userForm.get('emailId')?.hasError('required')">Mail id
+                                required</mat-error>
+                            <mat-error *ngIf="userForm.get('emailId')?.hasError('pattern')">follow the
+                                pattern of mailto:xxx@xyz.com</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field class="full-width">
+                            <mat-label>User name</mat-label>
+                            <input type="text" matInput autocomplete="off" placeholder="User Name"
+                                formControlName="userName" name="userName">
+                        </mat-form-field>
+                    </div>
+                    <div class="col" style="padding-top: 16px;">
+                        <mat-form-field class="full-width">
+                            <mat-label>Address</mat-label>
+                            <textarea matInput placeholder="Ex. Door no..." formControlName="address" name="address"
+                                maxlength="200"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="text-end" *ngIf="!updateuser">
+                    <button type="button" mat-flat-button color="accent" (click)="resetUser()">
+                        <mat-icon>highlight_off</mat-icon> Cancel
+                    </button> &nbsp;
+                    <button mat-flat-button color="primary" type="submit" (click)="onSubmit()">
+                        <mat-icon>check_circle_outline</mat-icon> submit
+                    </button>
+                </div>
+                <div class="text-end" *ngIf="updateuser">
+                    <button type="button" mat-flat-button color="accent" (click)="resetUser()">
+                        <mat-icon>highlight_off</mat-icon> Cancel
+                    </button> &nbsp;
+                    <button mat-flat-button color="primary" [disabled]=admindiable type="submit" (click)="updateProfile()">
+                        <mat-icon>check_circle_outline</mat-icon> Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="card">
+  <div class="cgs-container">
+    <div class="c-card border">
+      <mat-toolbar class="bg-white text-primary border-bottom">
+        <mat-icon><span class="material-icons-two-tone">
+            cake
+          </span></mat-icon>
+        <span class="c-font ps-2">Template Wishes</span>
+      </mat-toolbar>
+      <div class="row g-3">
+        <form [formGroup]="form">
+          <div class="col-auto mt-2">
+            <div class="input-group">
+              <div class="input-group-text">From:</div>
+              <input type="email" class="form-control" disabled [value]="userDetails?.emailId">
+            </div>
+          </div>
+          <div class="col-auto mt-2">
+            <div class="input-group">
+              <div class="input-group-text">To:</div>
+              <input type="email" class="form-control" formControlName="toEmail">
+            </div>
+            <div *ngIf="form.get('toEmail')!.hasError('required') && form.get('toEmail')!.touched">
+              Please enter the 'To' email.
+            </div>
+            <div *ngIf="form.get('toEmail')!.hasError('email') && form.get('toEmail')!.touched">
+              Please enter a valid email for 'To'.
+            </div>
+          </div>
+          <div class="col-auto mt-2">
+            <div class="input-group">
+              <div class="input-group-text">cc:</div>
+              <input type="email" class="form-control" formControlName="cc">
+            </div>
+            <div *ngIf="form.get('cc')!.hasError('email') && form.get('cc')!.touched">
+              Please enter a valid email for 'cc'.
+            </div>
+          </div>
+          <div class="col-auto mt-2">
+            <div class="input-group">
+              <div class="input-group-text">Subject:</div>
+              <input type="text" class="form-control" formControlName="subject">
+            </div>
+            <div *ngIf="form.get('subject')!.hasError('required') && form.get('subject')!.touched">
+              Please enter a Subject.
+            </div>
+          </div>
+          <angular-editor id="editor2" class="col-auto mt-2" formControlName="data" [config]="config1"
+            (ngModelChange)="onChange2($event)"></angular-editor>
+
+          <div class="col-auto mt-2 mb-2">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button mat-flat-button color="accent" type="button" routerLink="/main/new-joining-wish">Go back</button>
+              <button mat-flat-button color="primary" type="button" (click)="onSubmit()">Submit</button>
+            </div>
+          </div>
+        </form>
+        <!-- <p>Form Value: {{ form.value.signature }}</p>
+                  <p>Form Status: {{ form.status }}</p> -->
+      </div>
+    </div>
+  </div>
+</div>

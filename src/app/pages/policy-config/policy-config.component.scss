@@ -1,0 +1,41 @@
+.page-outer {
+    margin: 16px 16px 16px 16px;
+    background-color: #E0F4FF;
+}
+
+mat-card {
+    // background-color: #F5EBEB;
+    border-radius: 0px !important;
+}
+
+
+.button-padding {
+    padding: 10px;
+}
+
+.flexExpand {
+    flex: 1 1 auto;
+}
+
+.custom-input {
+    ::ng-deep {
+        .mat-mdc-text-field-wrapper {
+            // background-color: #F1EFEF;
+            // background-color: #E3F4F4;
+            background-color: #EEF5FF;
+        }
+    }
+}
+
+
+/* mat-label {
+    color: #3F51B5;
+} */
+
+.custom-label {
+    color: #3F51B5;
+}
+
+input {
+    cursor: pointer;
+}

@@ -1,0 +1,36 @@
+<div class="c-card border" id="container">
+  <div>
+    <mat-toolbar class="bg-white text-primary border-bottom">
+      <mat-icon><span class="material-icons-two-tone">
+          cake
+        </span></mat-icon>
+      <span class="c-font ps-2">Birthday Wishes</span>
+      <p></p>
+      <div class="right"><button mat-icon-button mat-dialog-close color="accent" class="close-btn" (click)="close('N')">
+          <mat-icon>close</mat-icon>
+        </button></div>
+    </mat-toolbar>
+    <br>
+    <div class="bg-white p-3">
+      <div class="p-3">
+        <mat-card class="custom-card">
+          <mat-card-header class="text-center">
+            <mat-card-title>Dear {{ empDetail?.fullName }} </mat-card-title>
+            <mat-card-subtitle>{{ empDetail?.designationName }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="templateContent">
+              <h2 style="font-weight: bold;" color="primary">
+                {{ empDetail?.title }}, <h2>{{ empDetail?.body }}</h2>
+              </h2>
+              <br />
+              <div>
+                <img [src]="empDetail?.image" />
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

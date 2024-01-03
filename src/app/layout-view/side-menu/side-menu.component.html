@@ -1,0 +1,28 @@
+<div>
+    <mat-list>
+        <div *ngFor="let item of menu;let i=index" class="btn__text-dynamic">
+            <div *ngIf="!item.subMenu" class="btn__text-dynamic-inner">
+                <mat-list-item *ngIf="item.title" [routerLink]="item.link" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }">
+                    <mat-icon [style.color]="item.color" matListItemIcon>
+                        {{ item.icon }}
+                    </mat-icon>
+                    <div matListItemLine class="title">{{ item.title }}</div>
+                </mat-list-item>
+            </div>
+            <div *ngIf="item.subMenu && item.subMenu.length > 0">
+                <mat-expansion-panel [expanded]="menuNum===i" (opened)="setMenuNum(i, item.menuId)">
+                    <mat-expansion-panel-header [ngClass]="activeMenu===item.menuId?'activeMenu':''">
+                        <mat-panel-title class="d-flex align-items-center cursor">
+                            <mat-icon [style.color]="item.color" matListItemIcon>
+                                {{ item.icon }}
+                            </mat-icon>
+                            <span matListItemLine class="list-item">{{ item.title }}</span>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-side-menu [menu]="item.subMenu"></app-side-menu>
+                </mat-expansion-panel>
+            </div>
+        </div>
+    </mat-list>
+</div>

@@ -1,0 +1,136 @@
+import { Component, AfterViewInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { DesignationDetailComponent } from 'src/app/components/designation-detail/designation-detail.component';
+import { GlobalService } from 'src/app/services/global.service';
+import { LoaderService } from 'src/app/services/loader.service';
+import { RestService } from 'src/app/services/rest.service';
+
+@Component({
+  selector: 'app-desig-mgmt',
+  templateUrl: './desig-mgmt.component.html',
+  styleUrls: ['./desig-mgmt.component.scss']
+})
+export class DesigMgmtComponent implements AfterViewInit {
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  @ViewChild(MatSort)
+  sort!: MatSort;
+  designations: Dept[] = [];
+  // dataSource = new MatTableDataSource<Department>(this.departments);
+  dataSource:MatTableDataSource<Dept>;
+  selectedTab: string = '0';
+  tabLabel: string = 'Designation List';
+  designationColumns: string[] = ['id', 'name', 'description', 'actions'];
+  designationFormGroup = new FormGroup({
+    desigName: new FormControl('', [Validators.required,]),
+    description: new FormControl('', [Validators.required,]),
+  });
+  constructor(
+    private rest: RestService,
+    public dialog: MatDialog,
+    public global: GlobalService,
+    public restApi: RestService,
+    public loaderService: LoaderService
+   
+  ) {
+    this.getDesignations();
+    // this.dataSource =new MatTableDataSource(this.departments);
+  }
+
+  ngAfterViewInit(): void {
+  }
+
+  filterDesignation(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  async getDesignations() {
+    this.rest.getService('api/web/v1/display/all/designationDetail').subscribe(
+      (res: any) => {
+        this.designations = res.data;
+        this.dataSource = new MatTableDataSource<Dept>(res.data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }, (err: any) => {
+        console.log('Got Error: ' + JSON.stringify(err));
+      }
+    );
+  }
+  tabChanged(ev: any) {
+    console.log(ev.selectedIndex);
+    if (ev.selectedIndex == 0) {
+      this.tabLabel = 'Designation List';
+    } else if (ev.selectedIndex == 1) {
+      this.tabLabel = 'Add New Designation';
+    }
+  }
+  showDetails(data:any, mode: string): void {
+    
+    data.mode=mode;
+    const dialogRef = this.dialog.open(
+      
+      DesignationDetailComponent, {
+      panelClass: 'custom-modal',
+      width:'450px',
+      data: data,
+      closeOnNavigation: true,
+      hasBackdrop: true,
+      disableClose: true
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Alert Data: ' + JSON.stringify(result));
+      this.getDesignations();
+      
+    });
+  }
+
+
+  askForDeletion(data: any) {
+    const dialogRef = this.global.showCnfAlert('Alert', 'Do you want to delete this record?');
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Alert Data: ' + result);
+      if (result === 'Y') {
+        this.deleteEmployee(data);
+      }
+      if( result === 'N'){
+        const dialogRef = this.global.showToast( 'you cancelled the request');
+      };
+    });
+  }
+  
+
+  deleteEmployee(data: any) {
+    console.log('id' + data);
+    this.restApi.putData('api/web/v1/delete/designation/' + data.id).subscribe(
+      (resp: any) => {
+        if (resp.respCode === 'HMS_00' || resp.respCode === 'HMS_00') {     
+          this.getDesignations();
+          const dialogRef = this.global.showSuccessAlert(resp.respStatus, resp.data);
+        }
+      }, (err: any) => {
+        if (err.respCode === 'HMS_01')
+        
+        alert(this.global.showAlert);
+      }
+    )
+  }
+
+}
+
+
+
+export interface Dept {
+  id: string,
+  name: string,
+  description: string
+}

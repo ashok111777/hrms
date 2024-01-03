@@ -1,0 +1,67 @@
+<div class="center-component m-0 p-0">
+    <div class="border-bottom">
+        <h2 class="text-primary">
+            <span *ngIf="user.mode!=='A'">Probation Details</span>
+            <span *ngIf="user.mode==='A'">Add New Probation User</span>
+        </h2>
+        <button mat-icon-button color="accent" class="close-btn" (click)="close($event)">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="p-3">
+        <form [formGroup]="userForm" #desigForm="ngForm">
+            <div class="row">
+                <!-- <div *ngIf="user.mode!=='A'">
+                    <mat-form-field class="full-width">
+                        <mat-label>pbrId</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="pbrIds" readonly="true"
+                            formControlName="pbrId" name="pbrId">
+                    </mat-form-field>
+                </div> -->
+                <div>
+                    <mat-form-field class="full-width">
+                        <mat-label>Duration</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="Enter the Month"
+                            [readonly]="user.mode==='V'" formControlName="duration" name="duration">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="full-width" >
+                        <mat-label>Designation</mat-label>
+                        <mat-select required formControlName="designation" name="designation">
+                            <mat-option *ngFor="let d of desiganation" [value]="d.id" [disabled]="user.mode==='V' || user.mode==='E' ">
+                                {{d.designation}} 
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!-- <div *ngIf="user.mode!=='A'">
+                    <mat-form-field class="full-width">
+                        <mat-label>Desgnation</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="Desgnation"
+                            [readonly]="user.mode==='V'" formControlName="designation" name="designation"  [value]="user.desiganation">
+                    </mat-form-field>
+                </div> -->
+
+            </div>
+        </form>
+        <br><br>
+        <div class="text-end pb-3" *ngIf="user.mode==='E'">
+            <button type="button" mat-flat-button mat-dialog-close color="accent" (click)="close(user)">
+                <mat-icon>highlight_off</mat-icon>Cancel
+            </button> &nbsp;
+            <button type="submit" mat-flat-button color="primary" (click)="update()">
+                <mat-icon>edit_note</mat-icon> Proceed
+            </button>
+        </div>
+        <div class="text-end pb-3" *ngIf="user.mode==='A'">
+            <button type="button" mat-flat-button mat-dialog-close color="accent" (click)="close(user)">
+                <mat-icon>highlight_off</mat-icon> Cancel
+            </button> &nbsp;
+            <button type="submit" mat-flat-button color="primary" (click)="sendSaveRequest()" type="submit"
+                [disabled]="!desigForm.valid">
+                <mat-icon>check_circle_outline</mat-icon> Proceed &nbsp;
+            </button>
+        </div>
+    </div>
+</div>

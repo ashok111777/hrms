@@ -1,0 +1,62 @@
+{
+    "employee_list": [
+        { "empId": "1", "empName": "Suryakant Kumar", "designation": "Team Lead", "team": "R&D", "mobile": "1234567890", "email": "surya@cgs.com" },
+        { "empId": "2", "empName": "Ritunjay Kumar", "designation": "Software Engineer", "team": "R&D", "mobile": "1234567890", "email": "ritun@cgs.com" },
+        { "empId": "3", "empName": "Patchi Rajan", "designation": "Deputy Head", "team": "Project & Delivery", "mobile": "1234567890", "email": "patchi@cgs.com" },
+        { "empId": "4", "empName": "Ravi Teza", "designation": "Team Lead", "team": "Star CardMan", "mobile": "1234567890", "email": "surya@cgs.com" },
+        { "empId": "5", "empName": "Kabitha D", "designation": "Software Engineer", "team": "StarMPay", "mobile": "1234567890", "email": "surya@cgs.com" },
+        { "empId": "6", "empName": "Boopathi Raja", "designation": "Software Engineer", "team": "StarMPay", "mobile": "1234567890", "email": "boopathi@cgs.com" },
+        { "empId": "7", "empName": "Pankaj Kumar", "designation": "Software Engineer", "team": "Star MPay", "mobile": "1234567890", "email": "pankaj@cgs.com" },
+        { "empId": "8", "empName": "Manish Kumar", "designation": "Software Engineer", "team": "Prepaid", "mobile": "1234567890", "email": "manish@cgs.com" },
+        { "empId": "9", "empName": "VinothKumar", "designation": "Team Lead", "team": "Prepaid", "mobile": "1234567890", "email": "prepaid@cgs.com" },
+        { "empId": "10", "empName": "Shashikant Kumar", "designation": "Software Engineer", "team": "R&D", "mobile": "1234567890", "email": "shashi@cgs.com" }
+    ],
+    "departments":[
+        {"id": "D000", "name":"Star R&D", "description":"Research & Development"},
+        {"id": "D001", "name":"Star MPay", "description":"Mobile Banking"},
+        {"id": "D002", "name":"Star Prepaid", "description":"Prepaid Team"},
+        {"id": "D003", "name":"Star CAS", "description":"StarCAS"},
+        {"id": "D004", "name":"Star CardMan", "description":"CardMan"},
+        {"id": "D005", "name":"Star Recon", "description":"Reconsilation"},
+        {"id": "D006", "name":"Star EFT", "description":"Switch Team"},
+        {"id": "D007", "name":"Software Support", "description":"Software Support"},
+        {"id": "D008", "name":"HelpDesk Support", "description":"Helpdesk Support"},
+        {"id": "D009", "name":"HR", "description":"Human Resource"},
+        {"id": "D0010", "name":"Marketing", "description":"Marketing"},
+        {"id": "D0011", "name":"Admin", "description":"Admin"},
+        {"id": "D0011", "name":"Management", "description":"Management"}
+    ],
+    "designations":[
+        {"id":"P0013", "name":"Trainee Software Engineer", "description":"Trainee Software Engineer"},
+        {"id":"P0012", "name":"Software Engineer", "description":"Software Engineer"},
+        {"id":"P0011", "name":"Senior Software Engineer", "description":"Sr. Software Engineer"},
+        {"id":"P0010", "name":"Team Lead", "description":"Team Lead"},
+        {"id":"P009", "name":"Product Lead", "description":"Product Lead"},
+        {"id":"P008", "name":"Product Head", "description":"Product Head"},
+        {"id":"P007", "name":"Project Manager", "description":"Project Manager"},
+        {"id":"P006", "name":"Deputy Manager", "description":"Deputy Manager"},
+        {"id":"P005", "name":"Manager", "description":"Manager"},
+        {"id":"P004", "name":"Vice President", "description":"Vice President"},
+        {"id":"P003", "name":"President", "description":"President"},
+        {"id":"P002", "name":"DMD", "description":"Deputy Managing Director"},
+        {"id":"P001", "name":"MD", "description":"Managing Director"}
+    ],
+    "institutes": [
+        {"id":"INS0001", "name":"CGS", "description":"CashLink Global Systems Pvt. Ltd."},
+        {"id":"INS0002", "name":"HMA", "description":"CashLink Global Systems Pvt. Ltd."}
+    ],
+    "profiles": [
+        {"id":"P00000", "name":"Super Admin", "description":"Full Access of the portal", "pid":"SUPERADMIN", "menuid":"M0001", "createdBy":"Suryakant Kumar", "createDate":"16-02-2023"},
+        {"id":"P00001", "name":"Admin", "description":"Full Access of the portal", "pid":"ADMIN", "menuid":"M0002", "createdBy":"Suryakant Kumar", "createDate":"16-02-2023"},
+        {"id":"P00002", "name":"Human Resource", "description":"Full access but less than admin","pid":"HR", "menuid":"M0003", "createdBy":"Suryakant Kumar", "createDate":"16-02-2023"},
+        {"id":"P00003", "name":"Manager", "description":"Full access but less than admin", "pid":"MANAGER", "menuid":"M0004", "createdBy":"Suryakant Kumar", "createDate":"16-02-2023"}
+    ],
+    "users":[
+        {"id":"CGS001", "firstName":"Suryakant","lastName":"Kumar", "profile":"ADMIN","status":"A","empCode":"1", "dob":"08-03-1989","mobile":"8083705398","email":"surya@cgs.com","address":"Erka, Amba, Aurangabad, Bihar-824111", "gender":"M","company":"CashLink Global Systems Pvt. Ltd.", "branch":"Egmore"},
+        {"id":"CGS002", "firstName":"Vignesh","lastName":"Kumar", "profile":"HR","status":"A","empCode":"1", "dob":"08-03-1989","mobile":"8083705398","email":"surya@cgs.com","address":"Erka, Amba, Aurangabad, Bihar-824111", "gender":"M","company":"CashLink Global Systems Pvt. Ltd.", "branch":"Egmore"},
+        {"id":"CGS003", "firstName":"Ritunjay","lastName":"Kumar", "profile":"HR","status":"A","empCode":"1", "dob":"08-03-1989","mobile":"8083705398","email":"surya@cgs.com","address":"Erka, Amba, Aurangabad, Bihar-824111", "gender":"M","company":"CashLink Global Systems Pvt. Ltd.", "branch":"Egmore"},
+        {"id":"CGS004", "firstName":"Manish","lastName":"Kumar", "profile":"Manager","status":"A","empCode":"1", "dob":"08-03-1989","mobile":"8083705398","email":"surya@cgs.com","address":"Erka, Amba, Aurangabad, Bihar-824111", "gender":"M","company":"CashLink Global Systems Pvt. Ltd.", "branch":"Egmore"},
+        {"id":"CGS005", "firstName":"Kajal","lastName":"Kumari", "profile":"HR","status":"A","empCode":"1", "dob":"08-03-1989","mobile":"8083705398","email":"surya@cgs.com","address":"Erka, Amba, Aurangabad, Bihar-824111", "gender":"F","company":"CashLink Global Systems Pvt. Ltd.", "branch":"Egmore"},
+        {"id":"CGS006", "firstName":"Shashikant","lastName":"Kumar", "profile":"ADMIN","status":"A","empCode":"1", "dob":"08-03-1989","mobile":"8083705398","email":"surya@cgs.com","address":"Erka, Amba, Aurangabad, Bihar-824111", "gender":"M","company":"CashLink Global Systems Pvt. Ltd.", "branch":"Egmore"}
+    ]
+}

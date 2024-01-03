@@ -1,0 +1,70 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+mat-card {
+  width: 300px;
+  margin-bottom: 16px;
+}
+/* CSS for Leave Calendar */
+.calendar {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.empty {
+  background-color: #f0f0f0;
+  color: #999;
+  
+}
+
+.holiday {
+  background-color: #ffdddd;
+  color: #f00;
+}
+
+.event {
+  // background-color: #e6f7ff;
+  color: #0066cc;
+}
+
+.fest-day {
+  background-color: #d3ffd3;/* Change background color as needed */
+  font-weight: bold;         /* Apply additional styling as needed */
+  color: black;              /* Change font color as needed */
+}
+
+.holiday-badge {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #f00;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.empty span {
+  display: none;
+}
+
+.tab-active {
+  border-width: 9px !important;
+  border-style: solid !important;
+  border-color: orange !important;
+}

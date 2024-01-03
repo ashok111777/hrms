@@ -1,0 +1,106 @@
+
+.muted-text {
+    color: #a8a6a6;
+    font-size: smaller;
+}
+.dashboard {
+    .card {
+        border: 0px !important;
+        box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+    }
+    .row {
+        .card {
+            height: 100% !important;
+        }
+    }
+}
+.right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.export-btn {
+    width: auto !important;
+    max-width: 150px !important;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+.more-btn {
+    width: auto !important;
+    max-width: 150px !important;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+}
+.detail{
+    cursor: pointer;
+}
+.dashboard .info-card {
+    padding-bottom: 10px;
+}
+
+.dashboard .info-card h2 {
+    font-size: 18px;
+    color: #012970;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard .card-icon {
+    font-size: 32px;
+    line-height: 0;
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.dashboard .birthday-card .card-icon {
+    color: #4154f1;
+    background: #f6f6fe;
+}
+
+.dashboard .revenue-card .card-icon {
+    color: #2eca6a;
+    background: #e0f8e9;
+}
+
+.dashboard .customers-card .card-icon {
+    color: #ff771d;
+    background: #ffecdf;
+}
+.card-title {
+    // padding: 20px 0 15px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #012970;
+    font-family: "Poppins", sans-serif;
+}
+
+.card-title span {
+    color: #899bbd;
+    font-size: 14px;
+    font-weight: 400;
+}
+.count-title{
+    font-size: xx-large;
+    span{
+        margin:0px !important;
+    }
+}
+.trow{
+    tr{
+        margin-top:15px !important;
+        padding-bottom:15px !important;
+    }
+}
+
+
+
+.mat-cell{
+    text-align: center;
+    font-weight: bolder;
+    
+}

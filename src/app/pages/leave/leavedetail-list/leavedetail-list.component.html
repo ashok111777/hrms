@@ -1,0 +1,151 @@
+<div class="center-component m-0 p-0">
+    <div class="border-bottom">
+
+        <h2 class="text-primary">
+            <span *ngIf="user.mode!=='A'">
+                <mat-icon>groups</mat-icon>
+                Leave Request details
+            </span>
+            <!-- <span *ngIf="user.mode==='A'">Add New User</span> -->
+        </h2>
+        <button mat-icon-button color="accent" class="close-btn" (click)="close($event)">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="p-3">
+        <form [formGroup]="leaveForm" #desigForm="ngForm">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12" *ngIf="user.mode!=='A'">
+                    <mat-form-field class="full-width">
+                        <mat-label>emp id</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="id" readonly="true"
+                            formControlName="leaveid" name="leaveid">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>Name</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="fullName"
+                            [readonly]="user.mode==='V'" formControlName="fullname" name="fullname">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>team</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="Team name"
+                            [readonly]="user.mode==='V'" formControlName="teamName" name="teamName">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>applyDate</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="applyDate"
+                            [readonly]="user.mode==='V'" formControlName="applyDate" name="applyDate">
+
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>leaveStatus</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="leaveStatus"
+                            [readonly]="user.mode==='V'" formControlName="leaveStatus" name="leaveStatus">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>leaveType</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="leaveType"
+                            [readonly]="user.mode==='V'" formControlName="leaveType" name="leaveType">
+                    </mat-form-field>
+                </div>
+                <!-- <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>Title</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="title" [readonly]="user.mode==='V'"
+                            formControlName="title" name="title">
+                    </mat-form-field>
+                </div> -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>content</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="content"
+                            [readonly]="user.mode==='V'" formControlName="content" name="content">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>startDate</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="startDate"
+                            [readonly]="user.mode==='V'" formControlName="startDate" name="startDate">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>endingDate</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="endingDate"
+                            [readonly]="user.mode==='V'" formControlName="endingDate" name="endingDate">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>{{user.leaveStatus | lowercase}}By</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="approvedBy"
+                            [readonly]="user.mode==='V'" formControlName="approvedBy" name="approvedBy">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>{{user.leaveStatus | lowercase}}Date</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="approvedDate"
+                            [readonly]="user.mode==='V'" formControlName="approvedDate" name="approvedDate">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>lop</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="lop" [readonly]="user.mode==='V'"
+                            formControlName="lop" name="lop">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>withoutLop</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="withoutLop"
+                            [readonly]="user.mode==='V'" formControlName="withoutLop" name="withoutLop">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>officialLeave</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="officialLeave"
+                            [readonly]="user.mode==='V'" formControlName="officialLeave" name="officialLeave">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label>Leave balance</mat-label>
+                        <input type="text" matInput autocomplete="off" placeholder="Leave balance"
+                            [readonly]="user.mode==='V'" formControlName="leavebalance" name="leavebalance">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg col-md col-sm">
+                    <mat-form-field class="full-width">
+                        <mat-label>description</mat-label>
+                        <textarea type="text" matInput autocomplete="off" placeholder="description"
+                            [readonly]="user.mode==='V'" formControlName="description" name="description">
+                            </textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+        <br><br>
+        <!-- <div class="text-end">
+            <button type="button" mat-flat-button color="accent" (click)="close($event)">
+                <mat-icon>highlight_off</mat-icon> Cancel
+            </button> &nbsp;
+            <button mat-flat-button color="primary" type="submit">
+                <mat-icon>check_circle_outline</mat-icon> Proceed
+            </button>
+        </div> -->
+    </div>
+</div>

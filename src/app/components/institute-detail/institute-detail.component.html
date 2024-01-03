@@ -1,0 +1,52 @@
+<div class="center-component">
+    <h2>
+        <span *ngIf="data.mode==='E'||data.mode==='V'">Institute Details</span>
+        <span *ngIf="data.mode==='A'">Add New Institute</span>
+    </h2>
+    <button mat-icon-button mat-dialog-close color="accent" class="close-btn" (click)="close('N')">
+        <mat-icon>close</mat-icon>
+    </button>
+    <hr>
+    <div class="form ps-2 pe-2">
+        <form [formGroup]="instituteFormGroup" #desigForm="ngForm">
+            <img [src]="global.designationBanner" style="width:100%">
+            <!-- <mat-form-field  class="full-width" *ngIf="data.mode==='V'">
+                <mat-label>Institute ID</mat-label>
+                <input type="text" matInput autocomplete="off" placeholder="Institute ID" [readonly]="data.mode==='V'"
+                    [value]="data.insId">
+            </mat-form-field> -->
+            <mat-form-field  class="full-width">
+                <mat-label>Institute Name</mat-label>
+                <input type="text" matInput autocomplete="off" placeholder="Institute Name"
+                    [readonly]="data.mode==='V'" [value]="data.name" formControlName="instName" name="instName">
+            </mat-form-field>
+            <mat-form-field  class="full-width">
+                <mat-label>Description</mat-label>
+                <input type="text" matInput autocomplete="off" placeholder="Description" [readonly]="data.mode==='V'"
+                    [value]="data.description" formControlName="description" name="description">
+            </mat-form-field>
+            <div class="text-end pb-3" *ngIf="data.mode==='V'">
+                <button mat-flat-button mat-dialog-close color="accent" (click)="close('N')">
+                    <mat-icon>highlight_off</mat-icon>  Cancel 
+                </button>
+            </div>
+            <div class="text-end pb-3" *ngIf="data.mode==='E'">
+                <button mat-flat-button mat-dialog-close color="accent">
+                    <mat-icon>highlight_off</mat-icon>Cancel 
+                </button> &nbsp;
+                <button mat-flat-button color="primary"(click)="update()">
+                    <mat-icon>edit_note</mat-icon> Proceed 
+                </button>
+            </div>
+            <div class="text-end pb-3" *ngIf="data.mode==='A'">
+                <button mat-flat-button mat-dialog-close color="accent">
+                    <mat-icon>highlight_off</mat-icon> Cancel 
+                </button> &nbsp;
+                <button mat-flat-button color="primary" (click)="sendSaveRequest()" type="submit"
+                    [disabled]="!desigForm.valid">
+                    <mat-icon>check_circle_outline</mat-icon> Proceed
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

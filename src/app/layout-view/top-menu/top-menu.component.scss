@@ -1,0 +1,96 @@
+.logo-bg {
+    min-width: 300px;
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.title {
+    cursor: pointer;
+}
+
+.welcome-text {
+    font-size: smaller;
+}
+
+.header-title {
+    margin-top: 5px !important;
+    text-decoration: none;
+    color: whitesmoke;
+    // min-width: 230px !important;
+}
+
+.profile-bg {
+     height: 100px !important;
+     width: 100% !important;
+    background-image: url('/assets/imgs/profile-bg1.jpg') !important;
+    background-size: contain;
+    padding: 10px;
+}
+
+.avatar {
+    height: 70px !important;
+    width: 70px !important;
+    margin-left: 16px;
+    margin-top: -30px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: #fff;
+}
+
+.bg-camera {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: #ccc;
+    opacity: .2;
+}
+
+.bg-camera:hover {
+    color: #fff;
+    opacity: 1;
+}
+
+.profile-detail {
+    margin-left: 90px;
+    margin-top: -40px;
+
+    .label {
+        font-weight: bolder !important;
+        font-size: larger !important;
+    }
+
+    .subtitle {
+        font-size: x-small !important;
+        margin-top: -30px !important;
+        padding: 0px !important;
+    }
+}
+
+.circular--landscape {
+    display: inline-block;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.circular--landscape img {
+    width: auto;
+    height: 100%;
+    // margin-left: -50px;
+}
+
+.left{
+    margin-left: 16px;
+    font-weight: bolder;
+}
+
+.bg{
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+}

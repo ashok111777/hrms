@@ -1,0 +1,44 @@
+/* notifications.component.css */
+
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Adjust as needed for spacing between items */
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-right: 16px;
+}
+
+.notification-content {
+  flex-grow: 1;
+}
+
+.title-font {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.body-font {
+  font-size: 0.8rem;
+}
+
+.notification-container {
+  max-height: 450px; /* Adjust the maximum height as needed */
+  overflow-y: auto;
+}

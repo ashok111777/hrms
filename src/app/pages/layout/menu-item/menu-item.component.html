@@ -1,0 +1,36 @@
+<mat-list>
+    <ng-container *ngFor="let item of menu;let i=index">
+        <!-- If the item doesn't have children show it as list item-->
+        <ng-container *ngIf="item.subMenu === undefined">
+            <mat-list-item *ngIf="item.title" [routerLink]="item.link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <mat-icon [style.color]="item.color" matListItemIcon>
+                    {{ item.icon }}
+                </mat-icon>
+                <div matListItemLine class="title">{{ item.title }}</div>
+            </mat-list-item>
+        </ng-container>
+
+        <!-- If the item has subMenu show it as accordion-->
+        <ng-container *ngIf="item.subMenu && item.subMenu.length > 0">
+            <mat-expansion-panel [expanded]="menuNum==i" (opened)="setMenuNum(i, item.menuId)">
+                <mat-expansion-panel-header [ngClass]="activeMenu===item.menuId?'activeMenu':''">
+                    <mat-panel-title class="d-flex align-items-center cursor">
+                        <mat-icon [style.color]="item.color" matListItemIcon>
+                            {{ item.icon }}
+                        </mat-icon>
+                        <span matListItemLine class="list-item">{{ item.title }}</span>
+                    </mat-panel-title>
+                    <!-- <mat-nav-list>
+                        <mat-list-item>
+                            <mat-icon [style.color]="item.color" matListItemIcon>
+                                {{ item.icon }}
+                            </mat-icon>
+                            <span matListItemLine class="list-item">{{ item.title }}</span>
+                        </mat-list-item>
+                    </mat-nav-list> -->
+                </mat-expansion-panel-header>
+                <app-menu-item [menu]="item.subMenu"></app-menu-item>
+            </mat-expansion-panel>
+        </ng-container>
+    </ng-container>
+</mat-list>

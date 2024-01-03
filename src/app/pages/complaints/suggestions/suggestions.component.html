@@ -1,0 +1,35 @@
+<div class="p-2">
+    <div class="card bg-box ">
+        <mat-list>
+            <mat-list-item class="text-primary">
+                <mat-icon matListItemIcon class="text-primary">summarize</mat-icon>
+                <div matListItemTitle class="ps-2 text-primary">Suggestions</div>
+            </mat-list-item>
+        </mat-list>
+        <mat-divider></mat-divider>
+        <mat-card class="feedback-card">
+            <mat-card-content>
+                <form>
+                    <div class="container">
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Name" required>
+                        <mat-icon matSuffix>person</mat-icon>
+                        <mat-error>Please enter your name</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <textarea matInput placeholder="Feedback" rows="4" required></textarea>
+                        <mat-icon matSuffix>message</mat-icon>
+                        <mat-error>Please provide your feedback</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button mat-stroked-button color="warn" class="me-md-2" hidden
+                        type="button">Back</button>
+                    <button mat-stroked-button color="primary" type="button">Submit</button>
+                </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

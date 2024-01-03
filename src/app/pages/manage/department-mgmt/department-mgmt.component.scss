@@ -1,0 +1,29 @@
+.tab-active {
+    border-width: 9px !important;
+    border-style: solid !important;
+    border-color: orange !important;
+}
+
+.dept-form {
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #cdcdcd;
+    padding: 16px;
+    border-radius: 20px;
+    ;
+
+    img {
+        width: 100%;
+        margin: 16px;
+    }
+}
+
+td.mat-cell {
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+    border-bottom-style: dotted;
+    border-bottom-width: 1px;
+    height: 30px !important;
+}

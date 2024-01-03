@@ -1,0 +1,71 @@
+<div class="cgs-container" [hidden]="showViewEmpDetailPage">
+    <div class="c-card border">
+        <mat-toolbar class="bg-white text-primary border-bottom">
+            <mat-icon>supervisor_account</mat-icon>
+            <span class="c-font ps-2">Training schedule list</span>
+        </mat-toolbar>
+        <div class="bg-white p-2">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field class="full-width">
+                        <mat-label> <mat-icon> filter_alt </mat-icon>Filter</mat-label>
+                        <input matInput (keyup)="filterUser($event)" placeholder="Ex. Surya" #input>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="mat-elevation-z1 responsive-table">
+                 <table matTableResponsive class="full-width" mat-table matSort  [dataSource]="dataSource" >
+                    <ng-container matColumnDef="employeeId">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Emp Id </th>
+                        <td mat-cell *matCellDef="let row"> {{row.employeeId}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name </th>
+                        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="team">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Team </th>
+                        <td mat-cell *matCellDef="let row"> {{row.team}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="doj">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Doj </th>
+                        <td mat-cell *matCellDef="let row"> {{row.doj}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="empDesignation">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Designation </th>
+                        <td mat-cell *matCellDef="let row"> {{row.empDesignation}} </td>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="trainingDetails">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> TrainingDetails </th>
+                        <td mat-cell *matCellDef="let row"> {{row.trainingDetails}} </td>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                        <td mat-cell *matCellDef="let row">
+                            <button mat-icon-button aria-label="View" class="text-left" color="primary"
+                                (click)="showDetails(row, 'V')">
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                            <!-- <button mat-icon-button aria-label="Edit" class="text-secondary"
+                                (click)="showDetails(row, 'E')">
+                                <mat-icon>edit_note</mat-icon>
+                            </button> -->
+                        </td>
+                    </ng-container>
+                    <!-- Row shown when filter data match-->
+                    <tr mat-header-row *matHeaderRowDef="empdes sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: empdes;"></tr>
+
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No data founds! "{{input.value}}"</td>
+                    </tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
+                    aria-label="Show Next Employee"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

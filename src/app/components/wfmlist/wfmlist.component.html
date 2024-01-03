@@ -1,0 +1,83 @@
+<div *ngIf="showTable" class="app-employee-table-overlay">
+    <div class="cgs-container">
+        <div class="c-card border">
+            <mat-toolbar class="bg-white text-primary border-bottom">
+                <mat-icon>person_search</mat-icon>
+                <span class="c-font ps-2">Work From Home Details</span>
+                <span class="spacer"></span>
+                <button mat-stroked-button color="warn" (click)="onBackButtonClick()">Back</button>
+            </mat-toolbar>
+            <div class="bg-white p-2">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <mat-form-field class="full-width">
+                            <mat-label>Filter</mat-label>
+                            <input matInput (keyup)="filterUser($event)" placeholder="Ex. Surya" #input>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="mat-elevation-z8">
+                     <table matTableResponsive mat-table [dataSource]="Wfmlist" class="mat-elevation-z8">
+
+                        <!-- Sl. No. Column -->
+                        <ng-container matColumnDef="slNo">
+                            <th mat-header-cell *matHeaderCellDef> Sl. No. </th>
+                            <td mat-cell *matCellDef="let employee"> {{ employee.slNo }} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                            <td mat-cell *matCellDef="let employee"> {{ employee.name }} </td>
+                        </ng-container>
+
+                        <!-- Team Column -->
+                        <ng-container matColumnDef="team">
+                            <th mat-header-cell *matHeaderCellDef> Team </th>
+                            <td mat-cell *matCellDef="let employee"> {{ employee.team }} </td>
+                        </ng-container>
+
+                        <!-- Designation Column -->
+                        <ng-container matColumnDef="designation">
+                            <th mat-header-cell *matHeaderCellDef> Designation </th>
+                            <td mat-cell *matCellDef="let employee"> {{ employee.designation }} </td>
+                        </ng-container>
+
+                        <!-- In Time Column -->
+                        <ng-container matColumnDef="inTime">
+                            <th mat-header-cell *matHeaderCellDef> In Time </th>
+                            <td mat-cell *matCellDef="let employee"> {{ employee.inTime }} </td>
+                        </ng-container>
+
+                        <!-- Out Time Column -->
+                        <ng-container matColumnDef="outTime">
+                            <th mat-header-cell *matHeaderCellDef> Out Time </th>
+                            <td mat-cell *matCellDef="let employee"> {{ employee.outTime }} </td>
+                        </ng-container>
+
+                        <!-- Action Column -->
+                        <ng-container matColumnDef="actions">
+                            <th mat-header-cell *matHeaderCellDef> Actions </th>
+                            <td mat-cell *matCellDef="let row">
+                                <button mat-icon-button aria-label="View" color="primary"
+                                    (click)="showDetails(row, 'V')">
+                                    <mat-icon>visibility</mat-icon>
+                                </button>
+                                <!-- <button mat-icon-button aria-label="Edit" class="text-secondary" (click)="showDetails(row, 'E')">
+                <mat-icon>edit_note</mat-icon>
+              </button>
+              <button mat-icon-button aria-label="Delete" color="accent">
+                <mat-icon>delete</mat-icon>
+              </button> -->
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="WFmColumns sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: WFmColumns;"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
+                        aria-label="Select  departments"></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>

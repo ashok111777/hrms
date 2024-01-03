@@ -1,0 +1,132 @@
+<div class="cgs-container">
+    <div class=" c-card board">
+        <div>
+            <mat-toolbar class="bg-white text-primary border-bottom">
+                <mat-icon><span class="material-symbols-outlined">
+                        person_add
+                    </span></mat-icon>
+                <span class="c-font ps-2">New-Joining:</span>
+
+                <div style="position: absolute; right: 20px;">
+                    <button mat-raised-button color="primary" class="btn" routerLink="/main/new-joining-template">
+                        <mat-icon>add</mat-icon>New template</button>
+                </div>
+            </mat-toolbar>
+        </div>
+        <mat-tab-group animationDuration="1000ms">
+            <mat-tab label="New Employee Wishes List">
+                <div class="bg-white p-3">
+                    <div class="p-3">
+                        <div class="mat-elevation-z1 responsive-table">
+                            <table matTableResponsive mat-table [dataSource]="dataSource1">
+
+                                <ng-container matColumnDef="sno" class="text-start">
+                                    <th mat-header-cell *matHeaderCellDef>S.No</th>
+                                    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="empId">
+                                    <th mat-header-cell *matHeaderCellDef>Emp Id </th>
+                                    <td mat-cell *matCellDef="let row"> {{row.empId}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="employeeName">
+                                    <th mat-header-cell *matHeaderCellDef>Emp Name</th>
+                                    <td mat-cell *matCellDef="let element">{{element.employeeName}}</td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="team">
+                                    <th mat-header-cell *matHeaderCellDef>Team</th>
+                                    <td mat-cell *matCellDef="let element">{{ element.teamName }}</td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="designation">
+                                    <th mat-header-cell *matHeaderCellDef>Designation</th>
+                                    <td mat-cell *matCellDef="let element">{{ element.designationName }}
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="experience">
+                                    <th mat-header-cell *matHeaderCellDef>Experience</th>
+                                    <td mat-cell *matCellDef="let element">{{ element.experience }}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="actions">
+                                    <th mat-header-cell *matHeaderCellDef> Actions </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <button mat-icon-button aria-label="View" color="primary"
+                                            (click)="wishestemplate(element,'v')">
+                                            <mat-icon>visibility</mat-icon>
+                                        </button>
+                                    </td>
+                                </ng-container>
+                                <tr class="mat-row" *matNoDataRow>
+                                    <td class="mat-cell" colspan="12">No data founds! </td>
+                                </tr>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns1 sticky: true"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+                            </table>
+                            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
+                            aria-label="Show Next Employee"></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+            <!-- <mat-tab label="New joining Wishes Template">
+                <div class="bg-white p-3">
+                    <div class="row">
+                        <div class="p-3">
+                            <div class="row">
+                                <div>
+                                </div>
+                                <div>
+                                    <div class="mat-elevation-z1 responsive-table">
+                                         <table matTableResponsive class="full-width" mat-table [dataSource]="datasource2" matSort>
+                                            <ng-container matColumnDef="id">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>S.NO</th>
+                                                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="wishes">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Template
+                                                </th>
+                                                <td mat-cell *matCellDef="let row"> {{row.body}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="satus">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                                                <td mat-cell *matCellDef="let row"> {{row.satus}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="actions">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                                                <td mat-cell *matCellDef="let row">
+                                                    <button mat-icon-button aria-label="View" color="primary"
+                                                        (click)="showDetails(row, 'V')">
+                                                        <mat-icon>visibility</mat-icon>
+                                                    </button>
+                                                    <button mat-icon-button aria-label="Edit" class="text-secondary"
+                                                        (click)="showDetails(row, 'E')">
+                                                        <mat-icon>edit_note</mat-icon>
+                                                    </button>
+                                                    <button mat-icon-button aria-label="Delete" color="accent" (click)="deleteNewJoiningTemp(row)">
+                                                        <mat-icon>delete</mat-icon>
+                                                    </button>
+
+                                                </td>
+                                            </ng-container>
+
+                                            <tr mat-header-row *matHeaderRowDef="temp sticky: true"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: temp;"></tr>
+
+                                            Row shown when there is no matching data.
+                                            <tr class="mat-row" *matNoDataRow>
+                                                <td class="mat-cell" colspan="4">No data founds! </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab> -->
+        </mat-tab-group>
+    </div>
+</div>

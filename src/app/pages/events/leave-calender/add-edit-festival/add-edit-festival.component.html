@@ -1,0 +1,78 @@
+<div class="center-component p-0 m-0">
+    <div class="border-bottom">
+        <h2 class="text-primary">
+            <span>Add New Festival </span>
+        </h2>
+        <button mat-icon-button color="accent" class="close-btn" (click)="close()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="p-3">
+        <form [formGroup]="festivalForm">
+            <mat-form-field class="full-width">
+                <mat-label>Festival Name</mat-label>
+                <input type="text" matInput placeholder="FestivalName" formControlName="festivalName"
+                    [disabled]="!formEnabled">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="dobDatePicker" placeholder="date" formControlName="date" name="date"
+                    [disabled]="!formEnabled">
+                <mat-icon matSuffix (click)="dobDatePicker.open()">calendar_month</mat-icon>
+                <mat-datepicker #dobDatePicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Description</mat-label>
+                <input type="text" matInput placeholder="description" formControlName="description"
+                    [disabled]="!formEnabled">
+            </mat-form-field>
+        </form>
+        <div class="line">
+            <button style="float: right;" mat-icon-button color="primary" matTooltipPosition="above"
+            matTooltip="Table Header Requirements
+
+            * Serial Number (S.No.): A unique identifier for each festival.
+            * Festival Name: The official name of the festival.
+            * Date: The date or dates on which the festival takes place.
+            
+            Please ensure that the Excel sheet includes these mandatory headers for proper data processing.">
+                <mat-icon>info</mat-icon>
+            </button>
+
+            <!-- <button style="float: right;" mat-icon-button color="primary" (mouseover)="showTooltip = true"
+                (mouseleave)="showTooltip = false">
+                <mat-icon>info</mat-icon>
+            </button>
+
+            <div *ngIf="showTooltip" class="tooltip">
+                <h3>Table Header Requirements</h3>
+                <ul>
+                    <li>Serial Number (S.No.): A unique identifier for each festival.</li>
+                    <li>Festival Name: The official name of the festival.</li>
+                    <li>Date: The date or dates on which the festival takes place.</li>
+                </ul>
+                <p>Please ensure that the Excel sheet includes these mandatory headers for proper data processing.</p>
+            </div> -->
+
+        </div>
+
+        <div>
+            <label for="formFile" class="form-label">Choose an XLSX file</label>
+            <input class="form-control" id="formFile" type="file" accept=".xlsx" [disabled]="festivalForm.valid"
+                (change)="handleFileInput($event)">
+        </div>
+        <div class="text-end mt-2">
+            <button type="button" mat-flat-button mat-dialog-close color="accent" (click)="close()">
+                <mat-icon>highlight_off</mat-icon> Cancel
+            </button> &nbsp;
+            <button type="submit" mat-flat-button color="primary" (click)="sendSaveRequest()"
+                [disabled]="!(festivalForm.valid || fileValid)">
+                <mat-icon>check_circle_outline</mat-icon> Proceed &nbsp;
+            </button>
+
+        </div>
+    </div>
+
+
+
+</div>

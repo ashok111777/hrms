@@ -1,0 +1,66 @@
+<div class="cgs-container">
+    <div class="c-card border">
+        <div>
+            <mat-toolbar class="bg-white text-primary border-bottom">
+                <mat-icon>menu</mat-icon>
+                <span class="c-font ps-2">Auditing Report</span>
+            </mat-toolbar>
+        </div>
+        <div class="bg-white p-2">
+            <form [formGroup]="EmployeeData">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 text-primary">
+                        <mat-form-field class="full-width">
+                            <mat-label>Users</mat-label>
+                            <mat-select placeholder="Profile" formControlName="usersname" name="usersname">
+                                <mat-option value="ALL">ALL</mat-option>
+                                <mat-option *ngFor="let p of profiles" [value]="p">{{p}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 text-primary">
+                        <mat-form-field class="full-width">
+                            <mat-label>Operation</mat-label>
+                            <mat-select placeholder="Profile" formControlName="activity" name="activity">
+                                <mat-option value="ALL">ALL</mat-option>
+                                <mat-option value="CREATE">CREATE</mat-option>
+                                <mat-option value="DELETE">DELETE</mat-option>
+                                <mat-option value="UPDATE">UPDATE</mat-option>
+                                <mat-option value="LOGIN">LOGIN</mat-option>
+                                <mat-option value="LOGOUT">LOGOUT</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 text-primary">
+                        <mat-form-field class="full-width">
+                            <mat-label>Enter a date range</mat-label>
+                            <mat-date-range-input [rangePicker]="picker">
+                                <input matStartDate formControlName="start" placeholder="Start date"
+                                    [(ngModel)]="startDate">
+                                <input matEndDate formControlName="end" placeholder="End date" [(ngModel)]="endDate">
+                            </mat-date-range-input>
+                            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+            <div class="full-width text-center">
+                <button type="submit" mat-stroked-button color="accent" class="md-btn">
+                    <mat-icon>restart_alt</mat-icon>
+                    Reset
+                </button>
+                <div class="btn-group">
+                    <button type="button" mat-raised-button color="primary" class="md-btn dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <mat-icon>download</mat-icon> {{ selectedExportOption }}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button mat-menu-item (click)="GetData('pdf')">Export as PDF</button>
+                        <button mat-menu-item (click)="GetData('xlsx')">Export as XLSX</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

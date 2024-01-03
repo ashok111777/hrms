@@ -1,0 +1,16 @@
+<div>
+    <app-top-header (menuToggled)="toggle()"></app-top-header>
+
+    <mat-drawer-container hasBackdrop="false">
+        <mat-drawer mode="side" [opened]="opened" position="start">
+            <app-menu-item [menu]="menu"></app-menu-item>
+        </mat-drawer>
+        <mat-drawer mode="over" [opened]="global.rightPane" position="end" class="right-panel">
+            <app-user-profile [userDetails]="userDetails"></app-user-profile>
+        </mat-drawer>
+
+        <mat-drawer-content [class.margin-left]="opened">
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

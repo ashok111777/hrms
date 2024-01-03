@@ -1,0 +1,60 @@
+<mat-toolbar class="bg">
+    <div></div>
+    <!-- <a routerLink="/" class="p-3"><img [src]="global.logo"></a> -->
+    <button (click)="menuToggled.emit(true)" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <a class="header-title" routerLink="/">CGS Portal</a>
+    <button mat-icon-button (click)="checkFullScreenStatus()">
+        <mat-icon *ngIf="!isFullScreen">zoom_out_map</mat-icon>
+        <mat-icon *ngIf="isFullScreen">zoom_in_map</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <span class="welcome-text me-3">Hi {{ userName }}</span>
+    <!-- <button mat-icon-button class="me-3" (click)="openMessagesBox($event)">
+        <mat-icon matBadge="3" matBadgeColor="warn">mail_outline</mat-icon>
+    </button> -->
+    <!-- <button mat-icon-button class="me-3" (click)="openNotificationBox($event)"> -->
+    <!-- <button mat-icon-button class="me-3" (click)="openNotificationBox($event)">
+        <mat-icon [matBadge]="todayNotificationsCount$" matBadgeColor="warn">notifications</mat-icon>
+    </button> -->
+    <div class="demo-section">
+        <button mat-icon-button  (click)="openNotificationBox($event)">
+            <mat-icon  [matBadge]="todayNotificationsCount$ | async" [matBadgeHidden]="hidden" matBadgeColor="warn">notifications</mat-icon>
+        </button>
+    </div>
+
+
+    <button mat-icon-button [matMenuTriggerFor]="beforeMenu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #beforeMenu="matMenu" class="profile-card">
+        <div class="full-width">
+            <!-- <div class="profile-bg">
+                <button mat-icon-button class="bg-camera" [matMenuTriggerFor]="cameraOption">
+                    <mat-icon>photo_camera</mat-icon>
+                </button>
+                <mat-menu #cameraOption="matMenu">
+                    <button mat-menu-item>Choose from Avatar</button>
+                    <button mat-menu-item>Change Picture</button>
+                </mat-menu>
+                <img src="assets/imgs/avatar/avt.jpg" class="avatar">
+                <div class="profile-detail">
+                    <div class="label">Suryakant Kumar</div><br>
+                    <div class="subtitle">Sr. Software Engineer</div>
+                </div>
+            </div> -->
+        </div>
+        <button mat-menu-item routerLink="./app-user-profile">
+            <!-- <mat-icon color="primary">person</mat-icon> -->
+            <img src="assets\imgs\cashlink-logo.png" class="circular--landscape" alt="imgs">
+            <span class="spacer"></span>
+            <span class="left">Profile &nbsp;</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+            <mat-icon color="warn">logout</mat-icon>
+            <span class="me-3 text-danger fw-bold">Logout</span>
+        </button>
+    </mat-menu>
+</mat-toolbar>

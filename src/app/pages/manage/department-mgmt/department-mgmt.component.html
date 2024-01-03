@@ -1,0 +1,106 @@
+<div class="cgs-container">
+    <div class="c-card bg-white border">
+        <mat-toolbar class="text-primary bg-white border-bottom">
+            <mat-icon>chrome_reader_mode</mat-icon>
+            <span class="c-font ps-2">Department Management</span>
+        </mat-toolbar>
+        <div class="bg-white p-2">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <mat-form-field  class="full-width">
+                        <mat-label>Filter</mat-label>
+                        <input matInput (keyup)="filterDepartment($event)" placeholder="Ex. Star R&D" #input>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 text-end"></div>
+                <div class="col-lg-4 col-md-6 col-sm-12 text-end">
+                    <button mat-raised-button color="primary" class="btn"(click)="showDetails({}, 'A')">
+                        <mat-icon>add</mat-icon>New Department</button>
+                </div>
+            </div>
+            <div class="mat-elevation-z1 responsive-table">
+                 <table matTableResponsive class="full-width" mat-table [dataSource]="dataSource" matSort>
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> S.No </th>
+                        <td mat-cell *matCellDef="let row; let i = index"> {{ i + 1}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                        <td mat-cell *matCellDef="let row"> {{row.teamName}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+                        <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                        <td mat-cell *matCellDef="let row">
+                            <button mat-icon-button aria-label="View" color="primary" (click)="showDetails(row, 'V')">
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                            <button mat-icon-button aria-label="Edit" class="text-secondary" (click)="showDetails(row, 'E')">
+                                <mat-icon>edit_note</mat-icon>
+                            </button>
+                            <button mat-icon-button aria-label="Delete" color="accent"  (click)="askForDeletion(row)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="departmentColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: departmentColumns;"></tr>
+
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No Records founds!!!{{input.value}}</td>
+                    </tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons 
+                    aria-label="Select  departments"></mat-paginator>
+            </div>
+        </div>
+        <!-- <mat-tab-group color="primary" mat-stretch-tabs="true" #tab [selectedIndex]="selectedTab"
+            (selectedIndexChange)="tabChanged(tab)">
+            <mat-tab label="Department List">
+            </mat-tab>
+            <mat-tab label="Add New Department">
+                <mat-card class="full-width bg-white">
+                    <form [formGroup]="deparmentFormGroup" class="dept-form">
+                        <img src="assets/imgs/dept-banner.jpg">
+                        <div class="row">
+                            <div class="col-12">
+                                <mat-form-field  class="full-width">
+                                    <mat-label>Department Name</mat-label>
+                                    <input type="text" matInput autocomplete="off" placeholder="Enter Department Name"
+                                        formControlName="deptName" name="deptName">
+                                    <mat-hint></mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12">
+                                <mat-form-field  class="full-width">
+                                    <mat-label>Description</mat-label>
+                                    <input type="text" matInput autocomplete="off" placeholder="Enter Description"
+                                        formControlName="description" name="description">
+                                    <mat-hint></mat-hint>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="full-width text-center row">
+                            <div class="col-6">
+                                <button type="reset" mat-stroked-button color="accent" class="md-btn full-width"> 
+                                    <mat-icon>delete</mat-icon> Reset<mat-icon></mat-icon> 
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" mat-raised-button color="primary" class="md-btn full-width">
+                                    <mat-icon>add</mat-icon>  Add Department 
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card>
+            </mat-tab>
+        </mat-tab-group> -->
+    </div>
+</div>

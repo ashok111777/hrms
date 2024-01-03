@@ -1,0 +1,215 @@
+<div class="p-2 card">
+    <form [formGroup]="profileForm" class="form-horizontal" role="form">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand">Profile</a>
+                <form class="d-flex" role="search">
+                    <button mat-icon-button color="primary" class="d-flex" (click)="toggleEdit()">
+                        <mat-icon>drive_file_rename_outline</mat-icon>
+                    </button>
+                </form>
+            </div>
+        </nav>
+        <div class="row mt-5 align-items-center cardprofile">
+            <div class="col-md-3 text-center mb-5">
+                <div id="avatar-container">
+                    <img id="avatar-photo" #avatarImg class="avatar-photo"
+                        [src]="photo && photo !== '' ? photo : 'https://www.w3schools.com/howto/img_avatar.png'"
+                        (mouseenter)="showAddPhotoOverlay=true" alt="avatar photo">
+                    <div *ngIf="showAddPhotoOverlay" id="add-photo-overlay" class="avatar-photo"
+                        (mouseleave)="showAddPhotoOverlay=false">
+                        <button id="add-avatar-photo-button" class="center-positon-absolute" mat-icon-button
+                            [hidden]="imagehide" (click)="openFileInput(fileInput)">
+                            <mat-icon>add_a_photo</mat-icon>
+                        </button>
+                        <mat-icon id="remove-avatar-photo-button" *ngIf="photo && photo !== ''" [hidden]="imagehide"
+                            (click)="removePhoto()" matTooltip="Remove this photo">close</mat-icon>
+                    </div>
+                    <!-- Input file -->
+                    <input #fileInput type="file" (change)="addPhoto($event)" name="avatar"
+                        accept="image/png, image/jpeg" style="display:none;">
+                </div>
+            </div>
+            <div class="col">
+                <div class="row align-items-center">
+                    <div class="col-md-7">
+                        <h4 class="mb-1">{{ userDetails?.firstName }} {{ userDetails?.lastName }}</h4>
+                        <p class="small mb-3"><span class="badge badge-dark">Egmore, Chennai</span></p>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-7">
+                        <p class="">
+                            <!-- I'm an HR professional with a decade of experience working within the intricacies of people
+                            management. Outside of work, I enjoy hiking with friends and family. -->
+                            {{userDetails?.bio}}
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p class="small mb-0 ">CashLink Global Systems Private Limited</p>
+                        <p class="small mb-0 ">No. 5, Mezzanine Floor, Thapar House, Red Cross Rd, Egmore, Chennai,
+                            Tamil
+                            Nadu 600008</p>
+                        <p class="small mb-0 ">044 2852 9483</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="my-4" />
+        <h3>Personal info</h3>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <mat-form-field class="full-width">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="firstName">
+                </mat-form-field>
+            </div>
+
+            <div class="form-group col-md-6">
+                <mat-form-field class="full-width">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastName" />
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <mat-form-field class="full-width">
+                    <mat-label>User Name</mat-label>
+                    <input matInput formControlName="userName" />
+                </mat-form-field>
+            </div>
+            <div class="form-group col-md-6">
+                <mat-form-field class="full-width">
+                    <mat-label>Institute Name</mat-label>
+                    <mat-select placeholder="Profile" formControlName="institudeName" name="institudeName">
+                        <mat-option *ngFor="let p of institutes" [value]="p.insId">{{p.name}}</mat-option>
+                    </mat-select>
+                    <!-- <input matInput  formControlName="institudeName"> -->
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="emailId" placeholder="brown@asher.me" />
+            </mat-form-field>
+        </div>
+
+        <div class="form-group">
+            <mat-form-field class="full-width">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="address" placeholder="P.O. Box 464, 5975 Eget Avenue" />
+            </mat-form-field>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <mat-form-field class="full-width">
+                    <mat-label>Mobile</mat-label>
+                    <input matInput name="mobileNo" id="mobileNo" formControlName="mobileNo" placeholder="+91xxxxxx786"
+                        (keypress)="numberOnly($event)" maxlength="10">
+                </mat-form-field>
+            </div>
+            <div class="form-group col-md-6">
+                <mat-form-field class="full-width">
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput [matDatepicker]="docPicker" formControlName="dob" (keypress)="numberOnly($event)" >
+                    <mat-datepicker-toggle matSuffix [for]="docPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #docPicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <mat-form-field class="full-width">
+                        <mat-label>About</mat-label>
+                        <textarea matInput id="About" name="About" rows="5" placeholder="My Bio"
+                            formControlName="bio"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <!-- Slide toggle -->
+        <div class="slidetoggle">
+            <span>
+                <h3>Do you need to change password:</h3>
+            </span>
+            <mat-slide-toggle formControlName="slide" [checked]="useDefault"
+                (change)="toggle($event)"></mat-slide-toggle>
+        </div>
+
+        <!-- Change password section -->
+        <div class="row mb-4" *ngIf="isChecked">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <mat-form-field class="full-width">
+                        <mat-label>Current Password</mat-label>
+
+                        <input matInput type="password" id="currentPassword" formControlName="currentPassword" />
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field class="full-width">
+                        <mat-label>New Password</mat-label>
+
+                        <input matInput type="password" id="newPassword" formControlName="newPassword"
+                            [type]="showPassword ? 'text' : 'password'" />
+                        <mat-error *ngIf="profileForm.get('newPassword')?.hasError('required')">New password is
+                            required.</mat-error>
+                        <mat-error *ngIf="profileForm.get('newPassword')?.hasError('pattern')">Password should be at
+                            least 6 characters long and must include a numeric value, a capital letter, and a special
+                            character.</mat-error>
+                        <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                            {{showPassword?'visibility_off':'visibility'}}
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field class="full-width">
+                        <mat-label>Confirm Password</mat-label>
+
+                        <input matInput type="password" id="cnfPassword" formControlName="cnfPassword"
+                            [type]="showPassword ? 'text' : 'password'" />
+                        <mat-error *ngIf="profileForm.get('cnfPassword')?.hasError('required')"> Confirm password is
+                            required.</mat-error>
+                        <mat-error *ngIf="profileForm.get('cnfPassword')?.hasError('passwordMismatch')">Passwords do not
+                            match.</mat-error>
+                        <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                            {{showPassword?'visibility_off':'visibility'}}
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p class="mb-2">Password requirements</p>
+                <p class="small mb-2">To create a new password, you have to meet all of the following requirements:</p>
+                <ul class="small pl-4 mb-0">
+                    <li>Minimum 8 characters</li>
+                    <li>At least one special character</li>
+                    <li>At least one number</li>
+                    <li>Can’t be the same as a previous password</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="text-end me-3" *ngIf="!updatebtm">
+            <button type="button" mat-flat-button color="accent">
+                <mat-icon>highlight_off</mat-icon> Cancel
+            </button> &nbsp;
+            <button mat-flat-button color="primary" type="submit" (click)="updateProfile()">
+                <mat-icon>check_circle_outline</mat-icon> Update
+            </button>
+        </div>
+
+    </form>
+
+</div>

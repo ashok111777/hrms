@@ -1,0 +1,484 @@
+<div class="p-2">
+
+    <div class="card bg-box">
+        <mat-toolbar class="bg-white text-primary border-bottom">
+            <mat-icon>person_add</mat-icon>
+            <span class="c-font ps-2 flex">Add New Employee</span>
+            <button mat-fab extended color="primary" matTooltip="on board for New employee! share via link"
+                [matTooltipPosition]="postion" (click)="onboard()">
+                <mat-icon>share</mat-icon>
+                Share link
+            </button>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+        <mat-stepper labelPosition="bottom" linear="true" #stepper>
+            <mat-step [stepControl]="personalDetailForm" [editable]="isEditable">
+                <form [formGroup]="personalDetailForm">
+                    <label>
+                        <h3 class="m-0 p-0"><span>Personal Details</span></h3>
+                    </label>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Emp Id</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Employee Id"
+                                    (keypress)="numberOnly($event)" formControlName="employeeId" name="employeeId"
+                                    maxlength="6">
+                                <mat-error *ngIf="personalDetailForm.get('employeeId')?.hasError('pattern')">Only
+                                    numeric values are allowed</mat-error>
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>First Name</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="First Name"
+                                    formControlName="firstName" name="firstName">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Last Name</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Last Name"
+                                    formControlName="lastName" name="lastName">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Father/Husband Name</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Father/Husband Name"
+                                    formControlName="fatherName" name="fatherName">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Mother Name</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Mother Name"
+                                    formControlName="motherName" name="motherName">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Gender</mat-label>
+                                <mat-select required formControlName="gender" name="gender">
+                                    <mat-option value="MALE">Male</mat-option>
+                                    <mat-option value="FEMALE">Female</mat-option>
+                                    <mat-option value="OTHER">Other</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>DOB</mat-label>
+                                <input type="text" onlyNumber matInput [matDatepicker]="dobDatePicker"
+                                    (keypress)="numberOnly($event)" placeholder="Employee DOB" formControlName="dob"
+                                    name="dob" max="{{currentDate}}">
+                                <mat-icon matSuffix (click)="dobDatePicker.open()">calendar_month</mat-icon>
+                                <mat-datepicker #dobDatePicker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Mobile Number</mat-label>
+                                <input matInput autocomplete="off" placeholder="Mobile Number"
+                                    (keypress)="numberOnly($event)" formControlName="mobileNumber" name="mobileNumber"
+                                    maxlength="10" type="text">
+                                <mat-error *ngIf="personalDetailForm.get('mobileNumber')?.hasError('required')">Mobile
+                                    Number is required</mat-error>
+                                <mat-error *ngIf="personalDetailForm.get('mobileNumber')?.hasError('pattern')">Only
+                                    numeric values are allowed</mat-error>
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Email Id</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Email Id"
+                                    formControlName="emailId" name="emailId">
+                                <mat-error *ngIf="personalDetailForm.get('emailId')?.hasError('required')">Mail id
+                                    required</mat-error>
+                                <mat-error *ngIf="personalDetailForm.get('emailId')?.hasError('pattern')">follow the
+                                    pattern of xxx@xyz.com</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="full-width text-center">
+                        <!-- <button  mat-stroked-button color="accent" class="md-btn"> Reset </button> -->
+                        <button type="submit" mat-raised-button color="primary" class="md-btn" matStepperNext>
+                            Next <!-- <mat-icon matIconSuffix>arrow_forward</mat-icon> -->
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="residenceDetailForm" [editable]="isEditable">
+                <form [formGroup]="residenceDetailForm">
+                    <label>
+                        <h3 class="m-0 p-0"><span>Residential Address</span></h3>
+                    </label>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Door No./Street</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Enter Door No./ Street"
+                                    formControlName="resDoorNo" name="resDoorNo">
+
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Village</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Village"
+                                    formControlName="resVillage" name="resVillage">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="City"
+                                    formControlName="resCity" name="resCity">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>District</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="District"
+                                    formControlName="resDistrict" name="resDistrict">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="State"
+                                    formControlName="resState" name="resState" [matAutocomplete]="auto">
+                                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                    <mat-option *ngFor="let st of filteredOptions | async" [value]="st">
+                                        {{st}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Zip Code</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Zip/Pin Code"
+                                    (keypress)="numberOnly($event)" formControlName="resZip" name="resZip" minlength="6"
+                                    [maxLength]="6" required>
+                                <mat-error *ngIf="residenceDetailForm.get('resZip')?.hasError('required')">PinCode
+                                    Number is required</mat-error>
+                                <mat-error *ngIf="residenceDetailForm.get('resZip')?.hasError('pattern')">Only numeric
+                                    values are allowed</mat-error>
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Country</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Select Country"
+                                    formControlName="resCountry" name="resCountry">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="right-stick-box">
+                                <mat-label>Communication Address is same as Residential Address?</mat-label>
+                                <mat-slide-toggle formControlName="residentialAddressCheck" class="right-stick"
+                                    (ngModelChange)="changeCommunicationAddress($event)">
+                                </mat-slide-toggle>
+                            </div>
+                        </div>
+                    </div><br>
+                    <label *ngIf="showCommunicationAddress">
+                        <h3 class="m-0 p-0"><span>Communication Address</span></h3>
+                    </label>
+                    <div class="row" *ngIf="showCommunicationAddress">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Door No./Street</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Enter Door No. / Street"
+                                    formControlName="comDoorNo" name="comDoorNo">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Village</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Village"
+                                    formControlName="comVillage" name="comVillage">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="City"
+                                    formControlName="comCity" name="comCity">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>District</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="District"
+                                    formControlName="comDistrict" name="comDistrict">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Enter State"
+                                    formControlName="comState" name="comState" [matAutocomplete]="cState">
+                                <mat-autocomplete autoActiveFirstOption #cState="matAutocomplete">
+                                    <mat-option *ngFor="let st of filteredOptions | async" [value]="st">
+                                        {{st}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Zip Code</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Zip/Pin Code"
+                                    (keypress)="numberOnly($event)" formControlName="comZip" name="comZip" minlength="6"
+                                    [maxLength]="6" required>
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Country</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Select Country"
+                                    formControlName="comCountry" name="comCountry">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="full-width text-center">
+                        <button mat-stroked-button color="primary" class="md-btn" matStepperPrevious>
+                            Back
+                        </button>
+                        <button type="submit" mat-raised-button color="primary" class="md-btn" matStepperNext>
+                            Next
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="professionalDetailForm" [editable]="isEditable">
+                <form [formGroup]="professionalDetailForm">
+                    <label>
+                        <h3 class="m-0 p-0"><span>Professional Details</span></h3>
+                        <!-- <p>(<span class="text-danger">*</span>) Fields are mandatory</p> -->
+                    </label>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Department</mat-label>
+                                <mat-select required formControlName="teamId" name="teamId">
+                                    <mat-option *ngFor="let d of departmentList" [value]="d.id">
+                                        {{d.teamName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Designation</mat-label>
+                                <mat-select required formControlName="designationId" name="designationId">
+                                    <mat-option *ngFor="let d of desiganation" [value]="d.id">
+                                        {{d.designation}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Qualifications</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="qualifications"
+                                    formControlName="qualifications" name="qualifications">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Employee Type</mat-label>
+                                <mat-select required formControlName="empType" name="empType"
+                                    (valueChange)="employmentTypeChanged($event)">
+                                    <mat-option value="FRESHER">Fresher</mat-option>
+                                    <mat-option value="EXPERIENCE">Experience</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Date of joining</mat-label>
+                                <input matInput [matDatepicker]="dojDatePicker" placeholder="Date of joining"
+                                    formControlName="doj">
+                                <mat-icon matSuffix (click)="dojDatePicker.open()">calendar_month</mat-icon>
+                                <mat-datepicker #dojDatePicker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Date of Confirmation</mat-label>
+                                <input matInput [matDatepicker]="docDatePicker" placeholder="Date of confirmation"
+                                    formControlName="doc">
+                                <mat-icon matSuffix (click)="docDatePicker.open()">calendar_month</mat-icon>
+                                <mat-datepicker #docDatePicker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12" *ngIf="showPreviousExp;">
+                            <mat-form-field class="full-width">
+                                <mat-label>Previous Employer</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Previous Employer"
+                                    formControlName="previousEmployer" name="previousEmployer">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12" *ngIf="showPreviousExp;">
+                            <mat-form-field class="full-width">
+                                <mat-label>Previous designation</mat-label>
+                                <mat-select formControlName="previousDesignation" name="previousDesignation">
+                                    <mat-option *ngFor="let d of desiganation" [value]="d.id">
+                                        {{d.designation}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12" *ngIf="showPreviousExp">
+                            <mat-form-field class="full-width">
+                                <mat-label>Previous Experience</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Previous Experience"
+                                    formControlName="previousExp" name="previousExp">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Total Experience</mat-label>
+                                <input matInput autocomplete="off" placeholder="Enter Experience"
+                                    [readonly]="disableExperience" formControlName="experience" name="experience">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Geography</mat-label>
+                                <mat-select required formControlName="geography" name="geography">
+                                    <mat-option value="SOUTH">South</mat-option>
+                                    <mat-option value="NORTH">North</mat-option>
+                                    <mat-option value="WEST">West</mat-option>
+                                    <mat-option value="EAST">East</mat-option>
+                                </mat-select>
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Work loaction</mat-label>
+                                <input type="text" matInput autocomplete="off" placeholder="Work loaction"
+                                    formControlName="workLocation" name="workLocation">
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+
+
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Addition/Replacement</mat-label>
+                                <mat-select required formControlName="requirementType" name="requirementType">
+                                    <mat-option value="ADDITION">ADDITION</mat-option>
+                                    <mat-option value="REPLACEMENT">REPLACEMENT</mat-option>
+                                </mat-select>
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <mat-form-field class="full-width">
+                                <mat-label>Category</mat-label>
+                                <mat-select required formControlName="Category" name="Category">
+                                    <mat-option value="C1">Category:1</mat-option>
+                                    <mat-option value="C2">Category:2</mat-option>
+                                    <mat-option value="C3">Category:3</mat-option>
+                                </mat-select>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="full-width text-center">
+                        <button mat-stroked-button color="primary" class="md-btn" matStepperPrevious>
+                            Back
+                        </button>
+                        <button type="submit" mat-raised-button color="primary" class="md-btn " matStepperNext>
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="imagedetailsform" [editable]="isEditable">
+                <form [formGroup]="imagedetailsform">
+                    <div>
+                        <label>
+                            <h3 class="m-0 p-0"><span>Upload Photo</span></h3>
+
+                        </label>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="img-box">
+                                    <img [src]="selectedImage" class="img-placeholder" *ngIf="selectedImage">
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="drag-drop-box">
+                                    <div style="text-align:center">
+                                        <div class="input_container">
+                                            <input type="file" (change)="onFileSelected($event)" #fileInput
+                                                accept="image/*">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="full-width text-center">
+                        <button mat-stroked-button color="primary" class="md-btn" matStepperPrevious>
+                            Back
+                        </button>
+                        <button type="submit" mat-raised-button color="primary" class="md-btn"
+                            (click)="removeValidator(stepper)" [disabled]="ButtonDisabled">
+                            Upload Photo
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <div class="success-box">
+                    <img src="../../../../assets/imgs/approved.gif" class="success-icon">
+                    <h1>Success</h1>
+                    <h3>Employee addedd successfully. The Employee id is {{empId}}.</h3>
+                    <br>
+
+                </div>
+                <div class="full-width text-center">
+                    <button type="submit" mat-raised-button color="primary" class="md-btn" (click)="stepper.reset()">
+                        Add New Employee
+                    </button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+        <br>
+    </div>
+    <br>
+</div>

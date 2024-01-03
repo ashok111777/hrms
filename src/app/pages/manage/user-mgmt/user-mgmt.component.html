@@ -1,0 +1,39 @@
+<div class="row p-3 pb-0 pt-0">
+  <!-- <div class="col-md-8">
+      <div class="user-title">
+        User management overview<span> Click on a user’s icon for updates on their profile </span>
+      </div>
+    </div> -->
+  <!-- <div class="col-md-4"></div> -->
+</div>
+<div class="row px-3 mt-2">
+  <div class="col-md-4">
+    <span class="existinguser " *ngIf="tabheader === 'Users'"> Existing User</span>
+    <span class="existinguser" *ngIf="tabheader === 'Roles'"> Existing Role</span>
+    <section id="tabs" class="full-width-tabs">
+      <div class="col-xs-12">
+        <nav>
+          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link" *ngFor="let link of navLinks" (click)="routetab(link.label)"
+              [routerLinkActive]="['active']" [routerLink]="link.link">{{link.label}}</a>
+          </div>
+        </nav>
+      </div>
+    </section>
+  </div>
+  <div class="col" *ngIf="tabheader === 'Users'">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <span class="spacer"></span>
+      <button mat-raised-button color="primary" class="btn" (click)="addUser()">
+        <mat-icon>add</mat-icon> New User</button>
+    </div>
+  </div>
+  <div class="col" *ngIf="tabheader === 'Roles'">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <span class="spacer"></span>
+      <button mat-raised-button color="primary" class="btn" (click)="addroles()">
+        <mat-icon>add</mat-icon>New Role</button>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
